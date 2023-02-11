@@ -19,11 +19,6 @@ a {
   cursor: pointer;
 }
 
-img {
-  width: 100%;
-  border-radius: 50%;
-}
-
 .site-content {
   margin-top: 60px;
   overflow: hidden;
@@ -32,6 +27,11 @@ img {
 .site-content span {
   display: block;
   padding: 10px;
+}
+
+.site-content img {
+  width: 100%;
+  border-radius: 50%;
 }
 
 /* navbar */
@@ -78,6 +78,11 @@ li {
   overflow: auto;
   background-color: inherit;
   flex-direction: column;
+}
+
+.tab-content img {
+  width: 30%;
+  filter: sepia(80%) hue-rotate(-10deg) saturate(250%);
 }
 
 #navbar-container {
