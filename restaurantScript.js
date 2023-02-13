@@ -1,11 +1,10 @@
 function openMenu () {
-  tabContent = document.getElementsByClassName("tab-content")[0];
+  const tabContent = document.getElementsByClassName("tab-content")[0];
 
-  if (tabContent.style.display === "flex") {
-    tabContent.style.display = "none";
-  } else {
-    tabContent.style.display = "flex";
+  if (tabContent.style.visibility !== "visible") {
+    setTimeout(() => { tabContent.style.visibility = "visible"; }, 1000);
   };
+  tabContent.classList.toggle("tab-content-open");
 }
 
 function changeMode () {
@@ -25,3 +24,39 @@ function copyContact (media, index) {
 
   navigator.clipboard.writeText(text);
 }
+
+addEventListener('DOMContentLoaded', (event) => {
+  const scroll = window.requestAnimationFrame ||
+              function(callback) {
+                window.setTimeout(callback, 1000/60)
+              };
+
+  function isElementInViewport(element) {
+    if (typeof jQuery === "function" && element instanceof jQuery) {
+      element = element[0];
+    }
+    let rect = element.getBoundingClientRect();
+    return (
+      (rect.top <= 0  &&  rect.bottom >= 0)
+      ||
+      (rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
+      rect.top <= (window.innerHeight || document.documentElement.clientHeight))
+      ||
+      (rect.top >= 0  &&  rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
+    );
+  };
+
+  const elementsToShow = document.querySelectorAll(".show-on-scroll");
+
+  function loop() {
+    elementsToShow.forEach(function (element)
+    {
+      if (isElementInViewport(element)) {
+        element.classList.add("is-visible");
+      };
+    });
+    scroll(loop);
+  };
+
+  loop();
+});
