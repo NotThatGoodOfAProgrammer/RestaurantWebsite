@@ -20,7 +20,7 @@ a {
 }
 
 .site-content {
-  margin-top: 60px;
+  margin-top: 90px;
   overflow: hidden;
 }
 
@@ -32,18 +32,29 @@ a {
 .site-content img {
   width: 100%;
   border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.8, 0.8);
+  transition: transform 3s 0.25s cubic-bezier(0, 1, 0.3 ,1),
+              opacity 0.3s 0.25s ease-out;
+  will-change: transform, opacity;
+}
+
+.site-content img.is-visible {
+  opacity: 1;
+  transform: scale(1, 1);
 }
 
 /* navbar */
 nav {
   background-color: inherit;
-  height: 60px;
-  width: 100vw;
+  height: 90px;
+  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  font-size: 2rem;
-  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
 }
 
 ul {
@@ -65,29 +76,44 @@ li {
   padding: 10px;
   transition: 0.3s;
   font-size: 17px;
-  margin-right: 30px;
+  margin-right: 10px;
 }
 
 .tab-content {
-  display: none;
-  height: 100vh;
-  width: 100vw;
-  padding: 6px 12px;
-  -webkit-animation: fadeEffect 1s;
-  animation: fadeEffect 1s;
+  position: fixed;
+  display: flex;
+  visibility: hidden;
+  height: 85%;
+  width: 100%;
+  padding-top: 90px;
+  font-size: 2rem;
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+  -webkit-transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1) 0s;
+  transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1) 0s;
   overflow: auto;
   background-color: inherit;
   flex-direction: column;
+  z-index: 1;
 }
 
-.tab-content img {
-  width: 30%;
+.tab-content-open {
+  visibility: visible;
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+}
+
+nav img {
+  height: 80px;
   filter: sepia(80%) hue-rotate(-10deg) saturate(250%);
+  padding: 5px 10px;
 }
 
 #navbar-container {
-  height: 60px;
-  width: 100vw;
+  height: 90px;
+  flex-grow: 1;
   display: flex;
   justify-content: end;
 }
@@ -147,17 +173,6 @@ input:checked + .slider:before {
   transform: translateX(26px);
 }
 
-@-webkit-keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-@keyframes fadeEffect {
-  from {opacity: 0;}
-  to {opacity: 1;}
-}
-
-
 /* sections */
 section {
   text-align: center;
@@ -205,4 +220,71 @@ iframe {
 
 .contact-box a, #contact a {
   color: darkslategrey;
+}
+
+
+@media (min-width: 920px) {
+  /* navbar */
+  nav {
+    height: 120px;
+  }
+
+  nav img {
+    height: 110px;
+  }
+
+  li {
+    display: inline-block;
+    margin: 5px;
+  }
+
+  .switch {
+    margin-left: 10px;
+  }
+
+  .tab {
+    display: none;
+  }
+
+  .tab-content {
+    padding-top: 0px;
+    padding-right: 30px;
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 120px;
+    width: 82%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: end;
+  }
+
+  .contact-box {
+    display: none;
+  }
+
+  /* site content */
+  .site-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 130px;
+  }
+
+  .site-content img {
+    width: 900px;
+  }
+
+  .site-content span, p {
+    width: 800px;
+  }
+
+  #contact {
+    width: 100%;
+  }
+
+  #contact p {
+    display: inline;
+  }
 }
