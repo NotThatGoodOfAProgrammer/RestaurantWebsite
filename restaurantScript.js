@@ -1,11 +1,9 @@
 function openMenu () {
   const tabContent = document.getElementsByClassName("tab-content")[0];
 
-  if (tabContent.style.visibility !== "visible") {
-    setTimeout(() => { tabContent.style.visibility = "visible"; }, 1000);
-  };
   tabContent.classList.toggle("tab-content-open");
 }
+
 
 function changeMode () {
   const sections = document.querySelectorAll("section");
@@ -17,6 +15,7 @@ function changeMode () {
   document.body.classList.toggle("dark");
 }
 
+
 function copyContact (media, index) {
   let text = document.getElementsByClassName(media)[index].innerText;
 
@@ -25,11 +24,13 @@ function copyContact (media, index) {
   navigator.clipboard.writeText(text);
 }
 
+
 addEventListener('DOMContentLoaded', (event) => {
   const scroll = window.requestAnimationFrame ||
               function(callback) {
                 window.setTimeout(callback, 1000/60)
               };
+
 
   function isElementInViewport(element) {
     if (typeof jQuery === "function" && element instanceof jQuery) {
@@ -46,8 +47,8 @@ addEventListener('DOMContentLoaded', (event) => {
     );
   };
 
-  const elementsToShow = document.querySelectorAll(".show-on-scroll");
 
+  const elementsToShow = document.querySelectorAll(".show-on-scroll");
   function loop() {
     elementsToShow.forEach(function (element)
     {
