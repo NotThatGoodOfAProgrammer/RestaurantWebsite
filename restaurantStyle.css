@@ -3,10 +3,6 @@ body {
   background-color: #fff4a1;
 }
 
-.dark {
-  background-color: darkgrey;
-}
-
 p {
   text-align: center;
   color: darkslategrey;
@@ -29,8 +25,13 @@ a {
   padding: 10px;
 }
 
+.site-content span, .site-content p {
+  max-width: 800px;
+}
+
 .site-content img {
   width: 100%;
+  max-width: 900px;
   border-radius: 50%;
   opacity: 0;
   transform: scale(0.8, 0.8);
@@ -182,16 +183,18 @@ section {
   border-radius: 34px;
 }
 
+section p {
+  font-size: 2.5rem;
+  color: black;
+  margin: 10px, 0px;
+}
+
 iframe {
   padding: 20px;
   padding-top: 0px;
   flex: 1 1;
   width: auto;
   min-height: 400px;
-}
-
-.dark-mode {
-  background-color: darkturquoise;
 }
 
 .contact-box {
@@ -206,20 +209,37 @@ iframe {
   flex-direction: column;
 }
 
-#promotions p {
-  font-size: 2.5rem;
-  color: black;
-  margin: 10px, 0px;
-}
-
 #contact {
   padding: 15px;
   margin: 70px 0px 0px 0px;
   border-radius: 0px;
 }
 
+#contact p {
+  font-size: 1rem;
+  color: darkslategrey;
+}
+
 .contact-box a, #contact a {
   color: darkslategrey;
+}
+
+#chefs img {
+  max-width: 750px;
+  padding-bottom: 20px;
+}
+
+/* dark mode */
+.dark {
+  background-color: darkgrey;
+}
+
+.dark-mode {
+  background-color: darkturquoise;
+}
+
+.dark img {
+  filter: grayscale(40%);
 }
 
 
@@ -227,6 +247,7 @@ iframe {
   /* navbar */
   nav {
     height: 120px;
+    z-index: 1;
   }
 
   nav img {
@@ -251,13 +272,18 @@ iframe {
     padding-right: 30px;
     position: fixed;
     right: 0;
-    top: 0;
+    top: 120px;
     height: 120px;
     width: 82%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     align-content: end;
+    visibility: visible;
+  }
+
+  .tab-content-open {
+    top: 0px;
   }
 
   .contact-box {
@@ -270,14 +296,6 @@ iframe {
     flex-direction: column;
     align-items: center;
     margin-top: 130px;
-  }
-
-  .site-content img {
-    width: 900px;
-  }
-
-  .site-content span, p {
-    width: 800px;
   }
 
   #contact {
