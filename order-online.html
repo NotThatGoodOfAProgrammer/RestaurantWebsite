@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>MouthwateringMeals</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/clouds/512/globe--v2.png">
+    <link rel="stylesheet" href="orderingStyle.css">
+    <script src="orderingScript.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
+      <div id="navbar-container">
+        <button class="tab" onclick="openMenu()"><img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png"></button>
+      </div>
+    </nav>
+    <nav class="food-navbar">
+      <div>
+        <a href="#dumplings"><button><span>Dumplings</span></button></a>
+        <a href="#square-meal"><button><span>Square meal</span></button></a>
+        <a href="#soups"><button><span>Soups</span></button></a>
+        <a href="#beverage"><button><span>Beverage</span></button></a>
+      </div>
+    </nav>
+    <div class="tab-content">
+      <ul>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/about-us.html">About us</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/reviews.html">Reviews</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/menu.html">Menu</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/order-online.html">Order online</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html">Shopcart</a>
+        </li>
+        <label class="switch">
+          <input type="checkbox" onchange="changeMode()">
+          <span class="slider"></span>
+        </label>
+      </ul>
+      <div class="contact-box">
+        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
+        <p class="emailInfo" onclick="copyContact(this.className, 0)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phoneInfo" onclick="copyContact(this.className, 0)">Phone: +48 123 456 789</p>
+      </div>
+    </div>
+    <div class="site-content">
+      <section id="dumplings">
+        <p>Dumplings</p>
+        <ul>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Dry dumplings</span>
+                  <div class="price-div">
+                    <span class="price">$14.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/premium-photo/dumplings-stuffed-stewed-cabbage-sour-cream-traditional-ukrainian-dish-varenyky_164638-8290.jpg?w=1380">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Cheese dumplings</span>
+                  <div class="price-div">
+                    <span class="price">$12.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/premium-photo/ukrainian-polish-traditional-dish-pierogi-varenyky-dumplings-stuffed-with-spinach-cheese-sour-cream-dark-table-close-up-selective-focus_207126-5131.jpg?w=1380">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Sweet dumplings</span>
+                  <div class="price-div">
+                    <span class="price">$13.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/delicious-dumplings-with-cherries-jam_2829-8659.jpg?w=1380&t=st=1676726066~exp=1676726666~hmac=0919304219a92911d888768a50ad93f11eb138ca1b9b50f624f8fdfaa15593c3">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Asian dumplings</span>
+                  <div class="price-div">
+                    <span class="price">$13.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/high-angle-japanese-dumplings-assortment_23-2148809860.jpg?w=1380&t=st=1676726578~exp=1676727178~hmac=6353895ee026ca80d7f098795e6b868ff75da9278ad65533ce09125a58cf1cb8">
+                </div>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </section>
+      <section id="square-meal">
+        <p>Square meal</p>
+        <ul>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Bowl</span>
+                  <div class="price-div">
+                    <span class="price">$15.49</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/salmon-poke-bowl-flat-lay-photography_53876-108183.jpg?w=740&t=st=1676726961~exp=1676727561~hmac=392283ef598079113f3184ba088f46b0b5be24be04a1f879631bd19a60bebedc">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Spaghetti</span>
+                  <div class="price-div">
+                    <span class="price">$12.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/premium-photo/pasta-with-tomato-sauce-plate_1220-5179.jpg?w=740">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Meat with vegetables</span>
+                  <div class="price-div">
+                    <span class="price">$14.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/premium-photo/delicious-tapas-barbecue-plate-grilled-turkey-eggplant-zucchini-pepper-with-tzatziki-sauce-gray-background-top-view_624178-60.jpg?w=740">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Salad</span>
+                  <div class="price-div">
+                    <span class="price">$11.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/premium-photo/greek-salad-fresh-tomato-sweet-pepper-cucumber-red-onion-feta-cheese-green-olives-healthy-vegetarian-food_2829-21036.jpg?w=1380">
+                </div>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </section>
+      <section id="soups">
+        <p>Soups</p>
+        <ul>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Thin soup</span>
+                  <div class="price-div">
+                    <span class="price">$6.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/front-view-delicious-soup-with-meatballs-potatoes-dark-background_140725-91681.jpg?w=740&t=st=1676731706~exp=1676732306~hmac=d03fe4a53556ec1e61864e093e692c9894108bfa335ed87bcfd32e4aa83fece0">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Thick soup</span>
+                  <div class="price-div">
+                    <span class="price">$7.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/pumpkin-vegetable-soup-with-cream_1220-7243.jpg?w=740&t=st=1676731902~exp=1676732502~hmac=b5f3df50a9dc3fd77eff379bcfe58d3021de676a3914931fd9614491007613ab">
+                </div>
+              </div>
+            </button>
+          </li>
+        </ul>
+      </section>
+      <section id="beverage">
+        <p>Beverage</p>
+        <ul>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Water</span>
+                  <div class="price-div">
+                    <span class="price">$0.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/macro-shot-pouring-water-into-glass_53876-147478.jpg?w=1380&t=st=1676743273~exp=1676743873~hmac=4e144034f1983ffa991f65c99e0a5fc37e22ac0d207bf956f12bbd898f3c50fb">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Tea</span>
+                  <div class="price-div">
+                    <span class="price">$3.49</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/top-view-cup-chamomile-tea-with-lemon-mint-leaves-sugar-white-surface-horizontal_176474-5080.jpg?w=1380&t=st=1676743438~exp=1676744038~hmac=6a0c9ca71f218643c40cae9d087e9fb6122fbb0b03b174527097edca5d230420">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Coffee</span>
+                  <div class="price-div">
+                    <span class="price">$3.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/premium-photo/cup-coffee-beans_288431-8864.jpg?w=826">
+                </div>
+              </div>
+            </button>
+          </li>
+          <li>
+            <button onclick="showPopUp(this)">
+              <div class="food-box">
+                <div class="food-description">
+                  <span class="food-name">Fresh juice</span>
+                  <div class="price-div">
+                    <span class="price">$4.99</span>
+                  </div>
+                </div>
+                <div class="img-container">
+                  <img src="https://img.freepik.com/free-photo/waterlemon-orange-juice-drinking-glass_74190-2215.jpg?w=1380&t=st=1676744791~exp=1676745391~hmac=5480619e3bbe2d3c10e2b98b9893de79f08137103257a3c689c2508c309be5af">
+                </div>
+              </div>
+          </button>
+          </li>
+        </ul>
+      </section>
+      <section id="contact">
+        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
+        <p class="emailInfo" onclick="copyContact(this.className, 1)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phoneInfo" onclick="copyContact(this.className, 1)">Phone: +48 123 456 789</p>
+      </section>
+    </div>
+    <div class="presentation">
+      <div class="pop-up">
+        <div class="row-fluid">
+          <div class="close-button-container">
+            <button>
+              <img class="close" src="https://img.icons8.com/ios-filled/256/delete-sign.png">
+            </button>
+          </div>
+        </div>
+        <div>
+          <div>
+            <img class="product-img" src=" ">
+          </div>
+          <span class="poped-food-name">Placeholder</span>
+          <form>
+            <div class="multiboxes">
+              <div class="multibox">
+                <div class="multibox-name">
+                  <span>TAKEAWAY (Choose 1)</span>
+                  <div class="required-item">
+                    <span>REQUIRED</span>
+                  </div>
+                </div>
+                <div>
+                  <fieldset>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-radio">
+                          <input type="radio" name="takeaway" value="eat-in" onchange="buttonActivity(); addPrice(this)">
+                          <span class="radio-dot"></span>
+                          <span>Eat in (Choose 1)</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>FREE</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-radio">
+                          <input type="radio" name="takeaway" value="paper" onchange="buttonActivity(); addPrice(this)">
+                          <span class="radio-dot"></span>
+                          <span>Paper packaging</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$3.00</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-radio">
+                          <input type="radio" name="takeaway" value="plastic" onchange="buttonActivity(); addPrice(this)">
+                          <span class="radio-dot"></span>
+                          <span>Plastic packaging</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$2.00</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="multibox">
+                <div class="multibox-name">
+                  <span>TOSS-INS (Choose 1-3)</span>
+                  <div class="required-item">
+                    <span>REQUIRED</span>
+                  </div>
+                </div>
+                <div>
+                  <fieldset>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="toss-ins" onchange="buttonActivity(); addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Ice-cube</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>FREE</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="toss-ins" onchange="buttonActivity(); addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Lime-slice</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$0.20</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="toss-ins" onchange="buttonActivity(); addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Nuts</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$1.00</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="toss-ins" onchange="buttonActivity(); addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Fresh basil</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$0.30</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="multibox">
+                <div class="multibox-name">
+                  <span>DRESSING (Up to 2)</span>
+                </div>
+                <div>
+                  <fieldset>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="dressing" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Tomato sauce</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$1.30</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="dressing" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Ketchup</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$0.70</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="dressing" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Garlic sauce</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$1.30</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="dressing" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Vinaigrette</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$2.00</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="dressing" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Honey-mustard</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$1.00</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+              <div class="multibox">
+                <div class="multibox-name">
+                  <span>ADD-ONS</span>
+                </div>
+                <div>
+                  <fieldset>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="add-ons" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Fried onion</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$1.50</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="add-ons" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Chocolate</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$3.50</span>
+                      </div>
+                    </div>
+                    <div class="item-and-price">
+                      <div class="item">
+                        <label class="custom-checkbox">
+                          <input type="checkbox" name="add-ons" onchange="addPrice(this)">
+                          <span class="checkmark"></span>
+                          <span>Fruit mix</span>
+                        </label>
+                      </div>
+                      <div class="item-price">
+                        <span>+$5.00</span>
+                      </div>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </div>
+            <div class="finalise-order">
+              <div class="summary">
+                <div class="quantity">
+                  <span>Qty</span>
+                  <button type="button" class="not-less" onclick="changeQty(-1)">
+                    <img src="https://img.icons8.com/ios/256/minus.png">
+                  </button>
+                  <span class="amount">1</span>
+                  <button type="button" onclick="changeQty(1)">
+                    <img src="https://img.icons8.com/ios/256/add.png">
+                  </button>
+                </div>
+                <div class="poped-price">
+                  <span>Placeholder</span>
+                </div>
+              </div>
+              <button type="button" class="add-to-cart" onclick="addToCart()">COMPLETE REQUIRED INFO ABOVE</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="added-to-cart">
+      <div class="short-description">
+        <img src=" ">
+        <div class="main-info">
+          <span class="added-info">Added to Cart</span>
+          <div>
+            <span class="count">Placeholder</span>
+            <span class="name">Placeholder</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <button>Go to Shopcart</button>
+      </div>
+    </div>
+  </body>
+</html>
