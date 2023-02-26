@@ -20,8 +20,9 @@ function changeMode () {
   });
 
   document.querySelector(".pop-up").classList.toggle("dark");
-
   document.querySelector(".finalise-order").classList.toggle("dark");
+
+  document.querySelector(".added-to-cart").classList.toggle("dark");
 }
 
 
@@ -111,24 +112,7 @@ function showPopUp(clicked) {
 
 
 function buttonActivity() {
-  const tossInsLimit = 3;
-
   const checkboxes = document.querySelectorAll("input[name=toss-ins]:checked");
-  const theRest = document.querySelectorAll("input[name=toss-ins]:not(:checked)");
-
-
-  if (checkboxes.length == tossInsLimit) {
-    theRest.forEach(element => {
-      element.closest(".item-and-price").classList.add("disabled");
-      element.disabled = true;
-    });
-  } else {
-    theRest.forEach(element => {
-      element.closest(".item-and-price").classList.remove("disabled")
-      element.disabled = false;
-    });
-  };
-
 
   if (checkboxes.length > 0) {
     const radio = document.querySelector("input[name=takeaway]:checked");
@@ -205,4 +189,28 @@ function addToCart () {
   document.getElementsByClassName("name")[0].innerText = document.getElementsByClassName("poped-food-name")[0].innerText;
 
   setTimeout(() => {alertClass.remove("show-added-to-cart")}, 4000);
+}
+
+
+function maxSelected(name) {
+  const tossInsLimit = 3;
+  const dressingLimit = 2;
+
+  const currentLimit = (name === "toss-ins" ? tossInsLimit : dressingLimit);
+
+  const checkboxes = document.querySelectorAll("input[name=" + name + "]:checked");
+  const theRest = document.querySelectorAll("input[name=" + name + "]:not(:checked)");
+
+
+  if (checkboxes.length == currentLimit) {
+    theRest.forEach(element => {
+      element.closest(".item-and-price").classList.add("disabled");
+      element.disabled = true;
+    });
+  } else {
+    theRest.forEach(element => {
+      element.closest(".item-and-price").classList.remove("disabled")
+      element.disabled = false;
+    });
+  };
 }
