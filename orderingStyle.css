@@ -1,7 +1,13 @@
+:root {
+  --light-bg-color: rgb(255, 244, 161);
+  --light-el-color: rgb(64, 224, 208);
+  --aiding-color: rgb(182, 70, 95);
+}
+
 body {
+  visibility: hidden;
   margin: 0;
-  background-color: #fff4a1;
-  transition: 0.4s;
+  background-color: var(--light-bg-color);
 }
 
 button {
@@ -66,7 +72,7 @@ li a {
   position: relative;
   color: black;
   cursor: pointer;
-  background: linear-gradient(0deg, #B6465F, #B6465F) no-repeat right bottom / 0 var(--bg-h);
+  background: linear-gradient(0deg, var(--aiding-color), var(--aiding-color)) no-repeat right bottom / 0 var(--bg-h);
   transition: background-size 350ms;
   --bg-h: 100%;
 }
@@ -191,9 +197,8 @@ section {
   margin: 80px 0 30px 0;
   margin-inline: max(calc(50% - 320px), 30px);
   font-size: 2.5rem;
-  background-color: turquoise;
+  background-color: var(--light-el-color);
   border-radius: 34px;
-  transition: 0.4s;
 }
 
 section p {
@@ -261,7 +266,7 @@ section button:hover {
 .food-box {
   height: 150px;
   max-width: 600px;
-  background-color: #B6465F;
+  background-color: var(--aiding-color);
   display: flex;
   flex-wrap: nowrap;
   border-radius: inherit;
@@ -307,19 +312,6 @@ li .img-container {
   font-size: 1.5rem;
 }
 
-/* dark mode */
-.dark {
-  background-color: darkgrey;
-}
-
-.dark-mode {
-  background-color: darkturquoise;
-}
-
-.dark img {
-  filter: grayscale(20%);
-}
-
 /* food navbar */
 html {
   scroll-behavior: smooth;
@@ -351,8 +343,8 @@ html {
 
 .food-navbar button:hover {
   cursor: pointer;
-  color: #B6465F;
-  fill: #B6465F;
+  color: var(--aiding-color);
+  fill: var(--aiding-color);
 }
 
 /* pop ups */
@@ -379,7 +371,7 @@ html {
   width: 400px;
   max-height: calc(100% - 64px);
   margin: 32px;
-  background-color: #fff4a1;
+  background-color: var(--light-bg-color);
   opacity: 1;
   border-radius: 10px;
   overflow-y: scroll;
@@ -406,6 +398,8 @@ html {
 
 .close {
   width: 100%;
+  z-index: 1;
+  position: sticky;
 }
 
 .product-img {
@@ -423,7 +417,7 @@ html {
   display: flex;
   flex-wrap: wrap;
   color: rgb(48, 50, 59);
-  background-color: #fff4a1;
+  background-color: var(--light-bg-color);
   position: sticky;
   bottom: 0px;
   border-top: 1px solid rgba(48, 50, 59, 0.13);
@@ -489,7 +483,7 @@ html {
 
 .active {
   cursor: pointer;
-  background-color: rgb(182, 70, 95);
+  background-color: var(--aiding-color);
   -webkit-transition: .3s;
   transition: .3s;
 }
@@ -516,7 +510,7 @@ html {
   margin-bottom: 10px;
 }
 
-.multibox-name span {
+.multibox-title {
   font-size: 1.5rem;
 }
 
@@ -550,7 +544,7 @@ html {
   justify-content: end;
 }
 
-.required-item span {
+.required {
   font-size: 0.8rem;
   padding: 8px;
   background-color: turquoise;
@@ -609,7 +603,7 @@ html {
   left: 0;
   height: 20px;
   width: 20px;
-  border: 2px solid #B6465F;
+  border: 2px solid var(--aiding-color);
   border-radius: 5px;
 }
 
@@ -618,11 +612,11 @@ html {
 }
 
 .custom-checkbox input:checked ~ .checkmark {
-  background-color: #B6465F;
+  background-color: var(--aiding-color);
 }
 
 .custom-radio input:checked ~ .radio-dot {
-  background-color: #fff4a1;
+  background-color: var(--light-bg-color);
 }
 
 .checkmark:after, .radio-dot:after {
@@ -654,7 +648,7 @@ html {
   width: 14px;
   height: 14px;
   border-radius: 50%;
-  background: #B6465F;
+  background: var(--aiding-color);
 }
 
 .disabled label{
@@ -679,7 +673,7 @@ html {
   right: 25px;
   width: 300px;
   height: 125px;
-  background-color: #fff4a1;
+  background-color: var(--light-bg-color);
   border-radius: 10px;
   border: 2px solid rgba(48, 50, 59, 0.5);
   padding: 10px;
@@ -729,7 +723,7 @@ html {
   height: 40px;
   width: 100%;
   font-size: 1rem;
-  background-color: #B6465F;
+  background-color: var(--aiding-color);
   border-radius: 10px;
   -webkit-transition: .3s;
   transition: .3s;
@@ -835,4 +829,17 @@ html {
   .added-to-cart {
     top: 200px;
   }
+}
+
+/* dark mode */
+.dark {
+  background-color: rgb(169, 169, 169);
+}
+
+.dark-mode {
+  background-color: rgb(0, 206, 209);
+}
+
+.dark img {
+  filter: grayscale(20%);
 }
