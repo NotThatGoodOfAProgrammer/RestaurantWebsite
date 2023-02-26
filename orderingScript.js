@@ -6,13 +6,22 @@ function openMenu () {
 
 
 function changeMode () {
-  const sections = document.querySelectorAll("section");
+  const theme = document.querySelector(".switch input").checked ? "dark" : "light";
+  localStorage.setItem("theme", theme)
 
-  sections.forEach(section => {
+  document.querySelectorAll("section").forEach(section => {
     section.classList.toggle("dark-mode");
   });
 
   document.body.classList.toggle("dark");
+
+  Array.from(document.getElementsByClassName("required")).forEach(section => {
+    section.classList.toggle("dark-mode");
+  });
+
+  document.querySelector(".pop-up").classList.toggle("dark");
+
+  document.querySelector(".finalise-order").classList.toggle("dark");
 }
 
 
@@ -26,9 +35,20 @@ function copyContact (media, index) {
 
 
 addEventListener('load', (event) => {
-  const isDarkMode = () => window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-  if (isDarkMode) {document.querySelector(".switch").click()}
 
+  const setting = localStorage.getItem("theme");
+  let preference = setting;
+  if (! setting) {
+    preference = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? "dark" : "light";
+  }
+
+  if (preference === "dark") {
+    document.querySelector(".switch input").checked = true;
+    changeMode();
+  } else {
+    document.querySelector(".switch input").checked = false;
+  };
+  
 
   sessionStorage.setItem("prevRadioValue", 0);
 
@@ -45,14 +65,18 @@ addEventListener('load', (event) => {
       image.style.width = "100%";
     };
   });
+
+  document.body.style.visibility = "visible";
+  
+  document.body.style.transition = "0.4s";
+  document.querySelectorAll("section").forEach(section => {
+    section.style.transition = "0.4s";
+  });
 });
 
 function showPopUp(clicked) {
   const popUp = document.getElementsByClassName("presentation")[0];
   popUp.style.visibility = "visible";
-  document.body.style.overflow = "hidden";
-  document.body.style.paddingRight = "17px";
-  document.getElementById("navbar-container").style.paddingRight = "17px";
 
 
   popUp.getElementsByClassName("product-img")[0].src = clicked.getElementsByTagName("img")[0].src;
@@ -66,9 +90,6 @@ function showPopUp(clicked) {
 
 
       popUp.style.visibility = "hidden";
-      document.body.style.overflow = "initial";
-      document.body.style.paddingRight = 0;
-      document.getElementById("navbar-container").style.paddingRight = 0;
 
 
       document.querySelectorAll(".item input").forEach(element => element.checked = false)
