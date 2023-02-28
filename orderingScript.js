@@ -36,7 +36,6 @@ function copyContact (media, index) {
 
 
 addEventListener('load', (event) => {
-
   const setting = localStorage.getItem("theme");
   let preference = setting;
   if (! setting) {
