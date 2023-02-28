@@ -2,6 +2,7 @@
   --light-bg-color: rgb(255, 244, 161);
   --light-el-color: rgb(64, 224, 208);
   --aiding-color: rgb(182, 70, 95);
+  --border-style: 1px solid rgba(48, 50, 59, 0.13);
 }
 
 body {
@@ -28,7 +29,6 @@ fieldset {
 }
 
 .site-content span {
-  display: block;
   padding: 10px;
 }
 
@@ -68,7 +68,7 @@ li {
   margin: 15px;
 }
 
-li a {
+.tab-content a {
   position: relative;
   color: black;
   cursor: pointer;
@@ -76,23 +76,20 @@ li a {
   transition: background-size 0.6s;
 }
 
-li a:where(:link, :visited, :hover, :active) {
+.tab-content a:where(:link, :visited, :hover, :active) {
   text-decoration: none;
 }
 
-li a:where(:hover, :focus-visible) {
+.tab-content a:where(:hover, :focus-visible) {
   background-size: 100% 100%;
   background-position-x: left;
 }
 
 .tab {
-  overflow: hidden;
   background-color: inherit;
   border: none;
   cursor: pointer;
   padding: 10px;
-  transition: 0.3s;
-  font-size: 17px;
   margin-right: 10px;
 }
 
@@ -112,7 +109,6 @@ li a:where(:hover, :focus-visible) {
 }
 
 .tab-content-open {
-  visibility: visible;
   -ms-transform: translateY(0);
   transform: translateY(0);
 }
@@ -132,7 +128,7 @@ nav img {
 
 #navbar-container img {
   height: 40px;
-  width: 40px;
+  aspect-ratio: 1 / 1;
 }
 
 /* switch button */
@@ -143,8 +139,7 @@ nav img {
   height: 34px;
 }
 
-.switch input { 
-  opacity: 0;
+.switch input {
   width: 0;
   height: 0;
 }
@@ -188,24 +183,21 @@ section {
   max-width: 640px;
   margin: 80px 0 30px 0;
   margin-inline: max(calc(50% - 320px), 30px);
-  font-size: 2.5rem;
   background-color: var(--light-el-color);
   border-radius: 34px;
 }
 
 section p {
   font-size: 2.5rem;
-  color: black;
 }
 
 section button {
-  appearance: none;
   padding: 0;
   width: 100%;
   border-radius: 15px;
 }
 
-section button:hover {
+section button:hover, .active:hover, .added-to-cart button:hover {
   box-shadow: 0 0.5em 0.5em -0.4em;
   transform: translateY(-0.25em);
 }
@@ -243,7 +235,6 @@ section button:hover {
 
 /* food box */
 .site-content ul {
-  margin-top: 10px;
   padding: 10px;
   display: flex;
   flex-wrap: wrap;
@@ -402,7 +393,7 @@ html {
   display: block;
   padding: 20px;
   font-size: 2rem;
-  border-bottom: 1px solid rgba(48, 50, 59, 0.13);
+  border-bottom: var(--border-style);
 }
 
 .finalise-order {
@@ -411,8 +402,7 @@ html {
   background-color: var(--light-bg-color);
   position: sticky;
   bottom: 0px;
-  border-top: 1px solid rgba(48, 50, 59, 0.13);
-  border-radius: 0px 0px 8px 8px;
+  border-top: var(--border-style);
   padding: 0px 20px 20px;
 }
 
@@ -478,11 +468,6 @@ html {
   transition: .3s;
 }
 
-.active:hover {
-  box-shadow: 0 0.5em 0.5em -0.4em;
-  transform: translateY(-0.25em);
-}
-
 /* multiboxes */
 .multiboxes {
   padding-inline: 20px;
@@ -490,12 +475,11 @@ html {
 
 .multibox {
   padding: 20px 0;
-  border-bottom: 1px solid rgba(48, 50, 59, 0.13);
+  border-bottom: var(--border-style);
 }
 
 .multibox-name {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   margin-bottom: 10px;
 }
@@ -510,8 +494,8 @@ html {
 
 .instruction-container {
   padding: 15px;
-  border: 1px solid rgba(48, 50, 59, 0.13);
-  background-color: lightgrey;
+  border: var(--border-style);
+  background-color: rgb(204, 204, 204);
   border-radius: 10px;
 }
 
@@ -519,7 +503,7 @@ html {
   display: block;
   height: 100%;
   width: 100%;
-  background-color: lightgrey;
+  background-color: rgb(204, 204, 204);
   resize: none;
   border: none;
 }
@@ -544,7 +528,6 @@ html {
 /*items list*/
 .item-and-price {
   display: flex;
-  justify-items: center;
   margin: 20px 0;
 }
 
@@ -553,13 +536,13 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: end;
-  align-items: end;
+  align-items: center;
 }
 
 .item {
   display: flex;
   align-items: center;
-}
+}/* check*/
 
 .item span {
   font-size: 1.2rem;
@@ -568,7 +551,7 @@ html {
 /* custom checkbox and radio button */
 
 .custom-checkbox, .custom-radio {
-  display: block;
+  display: flex;
   position: relative;
   padding-left: 35px;
   cursor: pointer;
@@ -689,6 +672,7 @@ html {
 
 .main-info div {
   margin-top: 8px;
+  color: rgba(0, 0, 0, .5);
 }
 
 .added-info {
@@ -696,15 +680,11 @@ html {
 }
 
 .count {
-  font-size: 1rem;
-  color:rgba(0, 0, 0, .5);
-  width: 5px;
   margin-right: 5px;
 }
 
 .name {
   font-size: 1.2rem;
-  color:rgba(0, 0, 0, .5);
 }
 
 .added-to-cart button {
@@ -719,11 +699,6 @@ html {
 
 .show-added-to-cart button {
   pointer-events: initial;
-}
-
-.added-to-cart button:hover {
-  box-shadow: 0 0.5em 0.5em -0.4em;
-  transform: translateY(-0.25em);
 }
 
 
@@ -746,7 +721,7 @@ html {
   section {
     width: min(calc(100% - 60px), 1040px);
     max-width: none;
-    margin-inline: max(calc(50% - 520px), 30px);
+    margin-inline: 0;
   }
 
   .switch {
@@ -786,15 +761,6 @@ html {
     align-items: center;
   }
 
-  iframe {
-      width: 800px;
-    }
-
-  #contact p {
-    display: inline;
-    margin-inline: 8px;
-  }
-
   .food-box {
     max-width: 500px;
   }
@@ -814,6 +780,11 @@ html {
 
   .added-to-cart {
     top: 200px;
+  }
+
+  #contact p {
+    display: inline;
+    margin-inline: 8px;
   }
 }
 
