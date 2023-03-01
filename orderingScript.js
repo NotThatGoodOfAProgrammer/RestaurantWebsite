@@ -1,5 +1,7 @@
 addEventListener('load', (event) => {
   sessionStorage.setItem("prevRadioValue", 0);
+  document.querySelector(".add-to-cart").disabled = true;
+  console.log("lol", document.querySelector(".add-to-cart"));
 
 
   const images = document.querySelectorAll(".img-container img");
@@ -55,19 +57,22 @@ function showPopUp(clicked) {
 
 function buttonActivity() {
   const checkboxes = document.querySelectorAll("input[name=toss-ins]:checked");
+  const button = document.querySelector(".add-to-cart");
 
   if (checkboxes.length > 0) {
     const radio = document.querySelector("input[name=takeaway]:checked");
 
     if (radio !== null) {
-      document.querySelector(".add-to-cart").classList.add("active");
-      document.querySelector(".add-to-cart").innerText = "ADD TO CART";
+      button.disabled = false;
+      button.classList.add("active");
+      button.innerText = "ADD TO CART";
       return
     };
   };
 
-  document.querySelector(".add-to-cart").classList.remove("active");
-  document.querySelector(".add-to-cart").innerText = "COMPLETE REQUIRED INFO ABOVE";
+  button.disabled = true;
+  button.classList.remove("active");
+  button.innerText = "COMPLETE REQUIRED INFO ABOVE";
 }
 
 
@@ -129,6 +134,8 @@ function addToCart () {
   document.querySelector(".short-description img").src = document.getElementsByClassName("product-img")[0].src;
   document.getElementsByClassName("count")[0].innerText = "x" + document.getElementsByClassName("amount")[0].innerText;
   document.getElementsByClassName("name")[0].innerText = document.getElementsByClassName("poped-food-name")[0].innerText;
+
+  document.querySelector(".add-to-cart").disabled = true;
 
   setTimeout(() => {alertClass.remove("show-added-to-cart")}, 4000);
 }
