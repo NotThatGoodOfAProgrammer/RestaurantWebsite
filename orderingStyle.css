@@ -39,6 +39,11 @@ section button:hover, .active:hover, .added-to-cart button:hover {
   transform: translateY(-0.25em);
 }
 
+#contact {
+  margin-inline: 0;
+  max-width: none;
+}
+
 /* food box */
 .site-content ul {
   padding: 10px;
