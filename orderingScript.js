@@ -132,7 +132,7 @@ function addToCart () {
   alertClass.add("show-added-to-cart")
 
   document.querySelector(".short-description img").src = document.getElementsByClassName("product-img")[0].src;
-  document.getElementsByClassName("count")[0].innerText = "x" + document.getElementsByClassName("amount")[0].innerText;
+  document.getElementsByClassName("count")[0].innerText = document.getElementsByClassName("amount")[0].innerText + "x";
   document.getElementsByClassName("name")[0].innerText = document.getElementsByClassName("poped-food-name")[0].innerText;
 
   document.querySelector(".add-to-cart").disabled = true;
