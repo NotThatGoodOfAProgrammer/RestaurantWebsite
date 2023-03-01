@@ -1,18 +1,28 @@
 function openMenu () {
-  const tabContent = document.getElementsByClassName("tab-content")[0];
-
-  tabContent.classList.toggle("tab-content-open");
+  document.getElementsByClassName("tab-content")[0].classList.toggle("tab-content-open");
 }
 
 
 function changeMode () {
-  const sections = document.querySelectorAll("section");
+  const theme = document.querySelector(".switch input").checked ? "dark" : "light";
+  localStorage.setItem("theme", theme)
 
-  sections.forEach(section => {
+  Array.from(document.getElementsByTagName("section")).forEach(section => {
     section.classList.toggle("dark-mode");
   });
 
   document.body.classList.toggle("dark");
+
+  try {
+    Array.from(document.getElementsByClassName("required")).forEach(section => {
+      section.classList.toggle("dark-mode");
+    });
+  
+    document.querySelector(".pop-up").classList.toggle("dark");
+    document.querySelector(".finalise-order").classList.toggle("dark");
+  
+    document.querySelector(".added-to-cart").classList.toggle("dark");
+  } catch (e) {};
 }
 
 
@@ -25,39 +35,25 @@ function copyContact (media, index) {
 }
 
 
-addEventListener('DOMContentLoaded', (event) => {
-  const scroll = window.requestAnimationFrame ||
-              function(callback) {
-                window.setTimeout(callback, 1000/60)
-              };
+addEventListener('load', (event) => {
+  const setting = localStorage.getItem("theme");
+  let preference = setting;
+  if (! setting) {
+    preference = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? "dark" : "light";
+  }
 
-
-  function isElementInViewport(element) {
-    if (typeof jQuery === "function" && element instanceof jQuery) {
-      element = element[0];
-    }
-    let rect = element.getBoundingClientRect();
-    return (
-      (rect.top <= 0  &&  rect.bottom >= 0)
-      ||
-      (rect.bottom >= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.top <= (window.innerHeight || document.documentElement.clientHeight))
-      ||
-      (rect.top >= 0  &&  rect.bottom <= (window.innerHeight || document.documentElement.clientHeight))
-    );
+  if (preference === "dark") {
+    document.querySelector(".switch input").checked = true;
+    changeMode();
+  } else {
+    document.querySelector(".switch input").checked = false;
   };
-
-
-  const elementsToShow = document.querySelectorAll(".show-on-scroll");
-  function loop() {
-    elementsToShow.forEach(function (element)
-    {
-      if (isElementInViewport(element)) {
-        element.classList.add("is-visible");
-      };
-    });
-    scroll(loop);
-  };
-
-  loop();
+  
+  
+  document.body.style.visibility = "visible";
+  
+  document.body.style.transition = "0.4s";
+  document.querySelectorAll("section").forEach(section => {
+    section.style.transition = "0.4s";
+  });
 });
