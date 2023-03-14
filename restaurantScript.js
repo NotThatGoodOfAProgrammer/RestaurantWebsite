@@ -5,7 +5,7 @@ function openMenu () {
 
 function changeMode () {
   const theme = document.querySelector(".switch input").checked ? "dark" : "light";
-  localStorage.setItem("theme", theme)
+  localStorage.setItem("theme", theme);
 
   Array.from(document.getElementsByTagName("section")).forEach(section => {
     section.classList.toggle("dark-mode");
@@ -17,7 +17,7 @@ function changeMode () {
     Array.from(document.getElementsByClassName("required")).forEach(section => {
       section.classList.toggle("dark-mode");
     });
-  
+    
     document.querySelector(".pop-up").classList.toggle("dark");
     document.querySelector(".finalise-order").classList.toggle("dark");
   
