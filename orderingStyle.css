@@ -23,7 +23,7 @@ fieldset {
 
 /* sections */
 section {
-  max-width: 640px;
+  max-width: 840px;
   margin: 80px 0 30px 0;
   margin-inline: max(calc(50% - 320px), 30px);
 }
@@ -99,7 +99,7 @@ li .img-container {
 }
 
 .food-name {
-  font-size: 2rem;
+  font-size: 1.7rem;
 }
 
 .price {
@@ -172,7 +172,7 @@ html {
   overflow-x: hidden;
 }
 
-.row-fluid {
+.fluid-row {
   position: relative;
   height: 0px;
 }
