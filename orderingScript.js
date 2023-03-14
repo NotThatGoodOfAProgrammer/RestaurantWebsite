@@ -41,7 +41,7 @@ function showPopUp(clicked) {
 
 
       document.querySelector(".add-to-cart").classList.remove("active");
-      document.querySelector(".add-to-cart").innerText = "COMPLETE REQUIRED INFO ABOVE";
+      document.querySelector(".add-to-cart").innerText = "COMPLETE REQUIRED INFO";
 
 
       document.getElementsByClassName("amount")[0].innerText = 1;
