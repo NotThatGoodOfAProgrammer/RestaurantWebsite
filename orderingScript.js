@@ -1,7 +1,6 @@
 addEventListener('load', (event) => {
   sessionStorage.setItem("prevRadioValue", 0);
   document.querySelector(".add-to-cart").disabled = true;
-  console.log("lol", document.querySelector(".add-to-cart"));
 
 
   const images = document.querySelectorAll(".img-container img");
@@ -72,7 +71,7 @@ function buttonActivity() {
 
   button.disabled = true;
   button.classList.remove("active");
-  button.innerText = "COMPLETE REQUIRED INFO ABOVE";
+  button.innerText = "COMPLETE REQUIRED INFO";
 }
 
 
@@ -131,11 +130,55 @@ function addToCart () {
   let alertClass = document.getElementsByClassName("added-to-cart")[0].classList;
   alertClass.add("show-added-to-cart")
 
-  document.querySelector(".short-description img").src = document.getElementsByClassName("product-img")[0].src;
-  document.getElementsByClassName("count")[0].innerText = document.getElementsByClassName("amount")[0].innerText + "x";
-  document.getElementsByClassName("name")[0].innerText = document.getElementsByClassName("poped-food-name")[0].innerText;
+  const productImg = document.getElementsByClassName("product-img")[0].src;
+  const amount = document.getElementsByClassName("amount")[0].innerText + "x";
+  const foodName = document.getElementsByClassName("poped-food-name")[0].innerText;
+
+  document.querySelector(".short-description img").src = productImg;
+  document.getElementsByClassName("count")[0].innerText = amount;
+  document.getElementsByClassName("name")[0].innerText = foodName;
 
   document.querySelector(".add-to-cart").disabled = true;
+  
+  document.querySelectorAll("input:disabled").forEach(element => {
+    element.disabled = false;
+    element.closest(".item-and-price").classList.remove("disabled");
+  });
+
+
+  const price = "$" + (parseFloat((document.querySelector(".poped-price span").innerText).slice(1)) / amount.slice(0, -1)).toFixed(2);
+  
+  const eatIn = document.querySelector("input[name=takeaway]:checked").nextElementSibling.nextElementSibling.innerText;
+
+  let tossIns = []
+  Array.from(document.querySelectorAll("input[name=toss-ins]:checked")).forEach(element => {
+    tossIns.push(element.nextElementSibling.nextElementSibling.innerText);
+  })
+
+  let dressing = []
+  Array.from(document.querySelectorAll("input[name=dressing]:checked")).forEach(element => {
+    dressing.push(element.nextElementSibling.nextElementSibling.innerText);
+  })
+
+  let addOns = []
+  Array.from(document.querySelectorAll("input[name=add-ons]:checked")).forEach(element => {
+    addOns.push(element.nextElementSibling.nextElementSibling.innerText);
+  })
+
+  const text = document.getElementsByTagName("textarea")[0].value;
+
+
+  let exportData = [productImg, amount, foodName, price, eatIn, tossIns, dressing, addOns, text]
+
+  let dataArray = JSON.parse(localStorage.getItem("order"));
+  if (dataArray === null) {
+    dataArray = [];
+  }
+  
+  dataArray[dataArray.length] = exportData;
+  localStorage.setItem("order", JSON.stringify(dataArray));
+
+  document.getElementsByTagName("textarea")[0].value = "";
 
   setTimeout(() => {alertClass.remove("show-added-to-cart")}, 4000);
 }
@@ -158,7 +201,7 @@ function maxSelected(name) {
     });
   } else {
     theRest.forEach(element => {
-      element.closest(".item-and-price").classList.remove("disabled")
+      element.closest(".item-and-price").classList.remove("disabled");
       element.disabled = false;
     });
   };
