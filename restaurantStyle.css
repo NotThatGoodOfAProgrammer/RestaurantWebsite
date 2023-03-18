@@ -121,7 +121,7 @@ nav img {
 }
 
 /* switch button */
-.switch {
+.dark-mode-switch {
   position: relative;
   display: inline-block;
   top: 3px;
@@ -129,12 +129,12 @@ nav img {
   height: 34px;
 }
 
-.switch input {
+.dark-mode-switch input {
   width: 0;
   height: 0;
 }
 
-.slider {
+.dark-mode-slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -146,7 +146,7 @@ nav img {
   border-radius: 34px;
 }
 
-.slider:before {
+.dark-mode-slider:before {
   position: absolute;
   content: "";
   height: 26px;
@@ -158,11 +158,11 @@ nav img {
   border-radius: 50%;
 }
 
-input:checked + .slider {
+input:checked + .dark-mode-slider {
   background-color: black;
 }
 
-input:checked + .slider:before {
+input:checked + .dark-mode-slider:before {
   -ms-transform: translateX(26px);
   transform: translateX(26px);
 }
@@ -228,7 +228,7 @@ section p, section span {
     margin: 5px;
   }
 
-  .switch {
+  .dark-mode-switch {
     margin-left: 10px;
   }
 
