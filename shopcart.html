@@ -34,15 +34,15 @@
         <li>
           <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html">Shopcart</a>
         </li>
-        <label class="switch">
+        <label class="dark-mode-switch">
           <input type="checkbox" onchange="changeMode()">
-          <span class="slider"></span>
+          <span class="dark-mode-slider"></span>
         </label>
       </ul>
       <div class="contact-box">
         <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
-        <p class="emailInfo" onclick="copyContact(this.className, 0)">E-mail: MouthwateringMeals@gmail.com</p>
-        <p class="phoneInfo" onclick="copyContact(this.className, 0)">Phone: +48 123 456 789</p>
+        <p class="email-info" onclick="copyContact(this.className, 0)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phone-info" onclick="copyContact(this.className, 0)">Phone: +48 123 456 789</p>
       </div>
     </div>
     <div class="site-content">
@@ -58,19 +58,19 @@
               <div class="food-details">
                 <span class="food-name">Sweet dumplings</span>
                 <div class="personalizations">
-                  <div class="takeaway"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Takeaway</span></button></div>
+                  <div class="takeaway"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Takeaway</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
-                  <div class="toss-ins"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Toss ins</span></button></div>
+                  <div class="toss-ins"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Toss ins</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
-                  <div class="dressing"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Dressing</span></button></div>
+                  <div class="dressing"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Dressing</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
-                  <div class="add-ons"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Add Ons</span></button></div>
+                  <div class="add-ons"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Add Ons</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
@@ -98,7 +98,7 @@
                 <div class="fluid-row">
                   <div class="inputed-text"></div>
                 </div>
-                <button class="list"  onmouseover="showInfo(this)" onmouseout="showInfo(this)">
+                <button class="list"  onmouseover="show-info(this)" onmouseout="show-info(this)">
                   <img src="https://img.icons8.com/ios/256/align-cell-content-left.png">
                 </button>
                 <button class="trash" onclick="trashItem(this)">
@@ -172,8 +172,8 @@
     </section>
     <section id="contact">
       <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
-      <p class="emailInfo" onclick="copyContact(this.className, 1)">E-mail: MouthwateringMeals@gmail.com</p>
-      <p class="phoneInfo" onclick="copyContact(this.className, 1)">Phone: +48 123 456 789</p>
+      <p class="email-info" onclick="copyContact(this.className, 1)">E-mail: MouthwateringMeals@gmail.com</p>
+      <p class="phone-info" onclick="copyContact(this.className, 1)">Phone: +48 123 456 789</p>
     </section>
   </div>
 </body>
