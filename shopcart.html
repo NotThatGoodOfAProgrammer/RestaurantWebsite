@@ -47,10 +47,13 @@
     </div>
     <div class="site-content">
     <section id="items">
+      <div class="empty-cart">
+        <span>You should <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/order-online.html">order</a> something</span>
+        <img src="https://img.freepik.com/free-photo/mid-adult-man-eating-sandwich-while-using-laptop-dining-table_637285-12589.jpg?w=1380&t=st=1679126130~exp=1679126730~hmac=1428dca6e4af8f7e86308fd33dc76dca3f196fa35bcd7059008ec93ab900e998">
+      </div>
       <ul>
         <li>
           <div class="food-summary">
-            <div class="options"></div>
             <div class="food-info">
               <div class="food-details">
                 <span class="food-name">Sweet dumplings</span>
@@ -98,7 +101,7 @@
                 <button class="list"  onmouseover="showInfo(this)" onmouseout="showInfo(this)">
                   <img src="https://img.icons8.com/ios/256/align-cell-content-left.png">
                 </button>
-                <button class="trash">
+                <button class="trash" onclick="trashItem(this)">
                   <img src="https://img.icons8.com/metro/256/trash.png">
                 </button>
               </div>
@@ -109,18 +112,55 @@
     </section>
     <section id="summary">
       <div class="summed-price-container">
-        <span>Summary:</span>
-        <span class="summed-price">$0.00</span>
+        <span class="summary-text">Summary:</span>
+        <span class="summed-price">Placeholder</span>
+        <div class="discounts big-screen-only">
+          <span class="promo">Promo:</span>
+          <div class="submitions">
+            <input type="text" placeholder="Code">
+            <button onclick="verifyCode(this)">
+              <img src="https://img.icons8.com/ios/256/enter-key.png">
+            </button>
+          </div>
+        </div>
       </div>
       <div class="payment-options">
-        <p>during pick up ............ BLIK</p>
-        <p>transfer ................ coupon</p>
+        <fieldset>
+          <div class="choice">
+            <label class="custom-radio">
+              <input type="radio" name="payment-method" value="during-pick-up">
+              <span class="radio-dot"></span>
+              <span>During pick up</span>
+            </label>
+          </div>
+          <div class="choice">
+            <label class="custom-radio">
+              <input type="radio" name="payment-method" value="blik">
+              <span class="radio-dot"></span>
+              <span>Blik</span>
+            </label>
+          </div>
+          <div class="choice">
+            <label class="custom-radio">
+              <input type="radio" name="payment-method" value="bank-transfer">
+              <span class="radio-dot"></span>
+              <span>Bank transfer</span>
+            </label>
+          </div>
+          <div class="choice">
+            <label class="custom-radio">
+              <input type="radio" name="payment-method" value="coupon">
+              <span class="radio-dot"></span>
+              <span>Coupon</span>
+            </label>
+          </div>
+        </fieldset>
       </div>
       <div class="discounts">
-        <span>Promo:</span>
-        <div>
+        <span class="promo">Promo:</span>
+        <div class="submitions">
           <input type="text" placeholder="Code">
-          <button>
+          <button onclick="verifyCode(this)">
             <img src="https://img.icons8.com/ios/256/enter-key.png">
           </button>
         </div>
