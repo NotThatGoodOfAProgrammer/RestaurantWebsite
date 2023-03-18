@@ -4,7 +4,7 @@ function openMenu () {
 
 
 function changeMode () {
-  const theme = document.querySelector(".switch input").checked ? "dark" : "light";
+  const theme = document.querySelector(".dark-mode-switch input").checked ? "dark" : "light";
   localStorage.setItem("theme", theme);
 
   Array.from(document.getElementsByTagName("section")).forEach(section => {
@@ -18,16 +18,16 @@ function changeMode () {
       section.classList.toggle("dark-mode");
     });
     
-    document.querySelector(".pop-up").classList.toggle("dark");
-    document.querySelector(".finalise-order").classList.toggle("dark");
+    document.getElementsByClassName("pop-up")[0].classList.toggle("dark");
+    document.getElementsByClassName("finalise-order")[0].classList.toggle("dark");
   
-    document.querySelector(".added-to-cart").classList.toggle("dark");
+    document.getElementsByClassName("added-to-cart")[0].classList.toggle("dark");
   } catch (e) {};
 }
 
 
-function copyContact (media, index) {
-  let text = document.getElementsByClassName(media)[index].innerText;
+function copyContact (element) {
+  let text = element.innerText;
 
   text = text.substring(text.indexOf(": ") +2);
 
@@ -43,17 +43,17 @@ addEventListener('load', (event) => {
   }
 
   if (preference === "dark") {
-    document.querySelector(".switch input").checked = true;
+    document.querySelector(".dark-mode-switch input").checked = true;
     changeMode();
   } else {
-    document.querySelector(".switch input").checked = false;
+    document.querySelector(".dark-mode-switch input").checked = false;
   };
   
   
   document.body.style.visibility = "visible";
   
   document.body.style.transition = "0.4s";
-  document.querySelectorAll("section").forEach(section => {
+  Array.from(document.getElementsByTagName("section")).forEach(section => {
     section.style.transition = "0.4s";
   });
 });
