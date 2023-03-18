@@ -377,7 +377,7 @@ html {
 
 .checkmark, .radio-dot {
   position: absolute;
-  top: -1px;
+  top: 0;
   left: 0;
   height: 20px;
   width: 20px;
