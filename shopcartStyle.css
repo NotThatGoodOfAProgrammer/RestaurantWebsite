@@ -209,11 +209,14 @@ li .img-container {
 }
 
 .payment-options {
+  margin-top: 10px;
   border-bottom: var(--border-style);
 }
 
-.payment-options p {
-  font-size: 1rem;
+.payment-options span, .payment-options a {
+  padding: 10px 0;
+  font-size: 1.7rem;
+  color: black;
 }
 
 .discounts {
