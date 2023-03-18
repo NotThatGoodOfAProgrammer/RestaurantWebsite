@@ -1,4 +1,24 @@
 /* sections */
+section {
+  max-width: 840px;
+}
+
+.empty-cart {
+  display: none;
+  padding: 20px 30px;
+}
+
+.empty-cart a {
+  color: black;
+}
+
+.empty-cart img {
+  box-sizing: border-box;
+  width : 100%;
+  margin-top: 10px;
+  border-radius: 20px;
+}
+
 .site-content ul {
   padding: 10px;
   display: flex;
@@ -14,11 +34,11 @@
 .food-summary {
   background-color: var(--aiding-color);
   border-radius: 15px;
+  max-width: 800px;
 }
 
 .food-info {
   height: 150px;
-  max-width: 840px;
   display: flex;
   flex-wrap: nowrap;
   border-radius: inherit;
@@ -38,11 +58,12 @@
   position: absolute;
   top: -18px;
   left: 80px;  
-  width: 120px;
-  height: 72px;
+  width: 150px;
+  height: 90px;
   background-color: var(--aiding-color);
   border-radius: 5px;
   border: var(--border-style);
+  overflow: hidden;
   z-index: 1;
   transition: 0.2s
 }
@@ -156,6 +177,7 @@ li .img-container {
   border: var(--border-style);
   border-radius: 15px;
   text-align: left;
+  z-index: 1;
   transition: 0.4s;
 }
 
@@ -181,13 +203,12 @@ li .img-container {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   border-bottom: var(--border-style);
   padding: 16px 16px 8px;
 }
 
 .payment-options {
-  height: 100px;
   border-bottom: var(--border-style);
 }
 
@@ -200,11 +221,15 @@ li .img-container {
   padding: 8px 16px 16px;
 }
 
-.discounts span {
+/*.discounts span {
   padding-right: 0;
 }
 
-.discounts input {
+.submitions {
+  padding-left: 10px;
+}*/
+
+.submitions input {
   position: relative;
   top: 2px;
   border-radius: 8px;
@@ -216,7 +241,7 @@ li .img-container {
   padding-inline: 10px;
 }
 
-.discounts button {
+.submitions button {
   border-style: none;
   padding: 0;
   padding-right: 10px;
@@ -226,6 +251,85 @@ li .img-container {
 
 .discounts img {
   height: 30px;
+}
+
+.big-screen-only {
+  display: none;
+  flex-grow: 1;
+  justify-content: right;
+}
+
+fieldset {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+
+.choice {
+  display: flex;
+  margin: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.choice span {
+  padding: 0;
+}
+
+/* custom radio button */
+.custom-radio {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 24px;
+}
+
+.custom-radio input {
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.radio-dot {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--aiding-color);
+  border-radius: 50%;
+}
+
+.custom-radio input:checked ~ .radio-dot {
+  background-color: inherit;
+}
+
+.radio-dot:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-radio input:checked ~ .radio-dot:after {
+  display: block;
+}
+
+.custom-radio .radio-dot:after {
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--aiding-color);
 }
 
 /* others */
@@ -241,7 +345,45 @@ iframe {
   border-radius: 20px;
 }
 
+
 @media (min-width: 920px) {
+  .personalizations .inputed-info {
+    visibility: visible;
+    opacity: 1;
+    width: 550px;
+    height: 18px;
+    padding: 0;
+    border: none;
+  }
+
+  .inputed-text {
+    left: calc(-100% - 50px);
+  }
+
+  #summary {
+    width: 840px;
+  }
+
+  .discounts {
+    display: none;
+  }
+
+  .big-screen-only {
+    display: flex;
+  }
+
+  .summed-price-container{
+    justify-content: left;
+  }
+
+  .summary-text {
+    padding-left: 26px;
+  }
+
+  fieldset {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   iframe, .food-info {
     width: 800px;
   }
