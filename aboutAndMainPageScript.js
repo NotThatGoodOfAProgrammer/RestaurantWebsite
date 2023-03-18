@@ -21,9 +21,9 @@ addEventListener('DOMContentLoaded', (event) => {
   };
 
 
-  const elementsToShow = document.querySelectorAll(".show-on-scroll");
+  const elementsToShow = document.getElementsByClassName("show-on-scroll");
   function loop() {
-    elementsToShow.forEach(function (element)
+    Array.from(elementsToShow).forEach(function (element)
     {
       if (isElementInViewport(element)) {
         element.classList.add("is-visible");
