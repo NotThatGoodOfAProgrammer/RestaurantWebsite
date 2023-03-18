@@ -124,6 +124,7 @@ nav img {
 .switch {
   position: relative;
   display: inline-block;
+  top: 3px;
   width: 60px;
   height: 34px;
 }
@@ -199,8 +200,10 @@ section p, section span {
 
 #contact {
   width: 100%;
+  max-width: none;
   padding: 15px;
   margin: 70px 0px 0px 0px;
+  margin-inline: 0;
   border-radius: 0px;
   box-sizing: border-box;
 }
