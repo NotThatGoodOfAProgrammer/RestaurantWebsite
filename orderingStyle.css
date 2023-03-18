@@ -39,11 +39,6 @@ section button:hover, .active:hover, .added-to-cart button:hover {
   transform: translateY(-0.25em);
 }
 
-#contact {
-  margin-inline: 0;
-  max-width: none;
-}
-
 /* food box */
 .site-content ul {
   padding: 10px;
@@ -382,7 +377,7 @@ html {
 
 .checkmark, .radio-dot {
   position: absolute;
-  top: 0;
+  top: -1px;
   left: 0;
   height: 20px;
   width: 20px;
