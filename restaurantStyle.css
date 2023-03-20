@@ -95,6 +95,7 @@ li {
   background-color: inherit;
   flex-direction: column;
   z-index: 2;
+  overflow: hidden;
 }
 
 .tab-content-open {
@@ -124,7 +125,7 @@ nav img {
 .dark-mode-switch {
   position: relative;
   display: inline-block;
-  top: 3px;
+  top: 0;
   width: 60px;
   height: 34px;
 }
