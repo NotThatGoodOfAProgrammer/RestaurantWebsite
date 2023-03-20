@@ -28,7 +28,7 @@ button img {
   padding: 10px;
 }
 
-.site-content span, .site-content p {
+.site-content span{
   max-width: 800px;
 }
 
@@ -85,10 +85,10 @@ li {
 .tab-content {
   position: fixed;
   display: flex;
-  height: calc(100% - 170px);
+  height: calc(100% - 150px);
   width: 100%;
-  padding-top: 80px;
-  font-size: 2rem;
+  padding-top: 60px;
+  font-size: 1.7rem;
   -ms-transform: translateY(-100%);
   transform: translateY(-100%);
   transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1) 0s;
@@ -170,13 +170,13 @@ input:checked + .dark-mode-slider:before {
 /* sections */
 section {
   text-align: center;
-  margin: 30px;
+  margin: 30px 20px;
   background-color: var(--light-el-color);
   border-radius: 34px;
 }
 
-section p, section span {
-  font-size: 1.7rem;
+section span {
+  font-size: 1.5rem;
 }
 
 .contact-box {
