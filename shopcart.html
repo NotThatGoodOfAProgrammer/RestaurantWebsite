@@ -58,19 +58,19 @@
               <div class="food-details">
                 <span class="food-name">Sweet dumplings</span>
                 <div class="personalizations">
-                  <div class="takeaway"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Takeaway</span></button></div>
+                  <div class="takeaway"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Takeaway</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
-                  <div class="toss-ins"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Toss ins</span></button></div>
+                  <div class="toss-ins"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Toss ins</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
-                  <div class="dressing"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Dressing</span></button></div>
+                  <div class="dressing"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Dressing</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
-                  <div class="add-ons"><button onmouseover="show-info(this)" onmouseout="show-info(this)"><span>Add Ons</span></button></div>
+                  <div class="add-ons"><button onmouseover="showInfo(this)" onmouseout="showInfo(this)"><span>Add Ons</span></button></div>
                   <div class="fluid-row">
                     <div class="inputed-info"></div>
                   </div>
@@ -98,7 +98,7 @@
                 <div class="fluid-row">
                   <div class="inputed-text"></div>
                 </div>
-                <button class="list"  onmouseover="show-info(this)" onmouseout="show-info(this)">
+                <button class="list"  onmouseover="showInfo(this)" onmouseout="showInfo(this)">
                   <img src="https://img.icons8.com/ios/256/align-cell-content-left.png">
                 </button>
                 <button class="trash" onclick="trashItem(this)">
@@ -125,30 +125,31 @@
         </div>
       </div>
       <div class="payment-options">
+        <span class="payment-text">Select payment option:</span><a class="link-to-payment" href="https://github.com/NotThatGoodOfAProgrammer"></a>
         <fieldset>
           <div class="choice">
-            <label class="custom-radio">
+            <label class="custom-radio" onclick="paymentSelected()">
               <input type="radio" name="payment-method" value="during-pick-up">
               <span class="radio-dot"></span>
               <span>During pick up</span>
             </label>
           </div>
           <div class="choice">
-            <label class="custom-radio">
+            <label class="custom-radio" onclick="paymentSelected()">
               <input type="radio" name="payment-method" value="blik">
               <span class="radio-dot"></span>
               <span>Blik</span>
             </label>
           </div>
           <div class="choice">
-            <label class="custom-radio">
+            <label class="custom-radio" onclick="paymentSelected()">
               <input type="radio" name="payment-method" value="bank-transfer">
               <span class="radio-dot"></span>
               <span>Bank transfer</span>
             </label>
           </div>
           <div class="choice">
-            <label class="custom-radio">
+            <label class="custom-radio" onclick="paymentSelected()">
               <input type="radio" name="payment-method" value="coupon">
               <span class="radio-dot"></span>
               <span>Coupon</span>
