@@ -1,6 +1,7 @@
 addEventListener('DOMContentLoaded', (event) => {
-  const importedData = JSON.parse(localStorage.getItem("order"));
   localStorage.setItem("codes", JSON.stringify([["code", " -10%"], ["easter egg", " -20$"]]));
+  
+  const importedData = JSON.parse(localStorage.getItem("order"));
   if (importedData !== null) {
     for (i = 1; i<importedData.length; i++){
       let a = document.getElementById("items").getElementsByTagName("li")[0].cloneNode(true);
