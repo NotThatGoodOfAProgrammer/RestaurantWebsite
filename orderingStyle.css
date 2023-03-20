@@ -10,22 +10,26 @@ fieldset {
   padding: 0;
 }
 
+.site-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 .site-content span, .site-content p {
   max-width: 1200px;
 }
 
-.site-content p {
-  margin-top: 0;
-  margin-bottom: 20px;
-  padding-top: 5px;
-  
-}
-
 /* sections */
 section {
-  max-width: 840px;
-  margin: 80px 0 30px 0;
-  margin-inline: max(calc(50% - 320px), 30px);
+  max-width: 640px;
+  margin: 30px 20px;
+  flex-grow: 1;
+  padding-top: 10px;
+}
+
+section:first-child {
+  margin-top: 80px;
 }
 
 section button {
@@ -94,7 +98,7 @@ li .img-container {
 }
 
 .food-name {
-  font-size: 1.7rem;
+  font-size: 1.3rem;
 }
 
 .price {
