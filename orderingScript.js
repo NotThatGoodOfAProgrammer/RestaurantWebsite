@@ -1,57 +1,13 @@
-addEventListener('DOMContentLoaded', (event) => {
-  localStorage.setItem("codes", JSON.stringify([["code", " -10%"], ["easter egg", " -20$"]]));
-  
-  const importedData = JSON.parse(localStorage.getItem("order"));
-  if (importedData !== null) {
-    for (i = 1; i<importedData.length; i++){
-      let a = document.getElementById("items").getElementsByTagName("li")[0].cloneNode(true);
-      document.getElementById("items").getElementsByTagName("ul")[0].appendChild(a);
-    }
-
-    const names = document.getElementsByClassName("food-name");
-    const choices = document.getElementsByClassName("inputed-info");
-    const images = document.querySelectorAll(".img-container img");
-    const quantities = document.getElementsByClassName("ordered-quantity");
-    const prices = document.getElementsByClassName("price");
-    const instructions = document.getElementsByClassName("inputed-text")
-
-    let summary = 0;
-    for (i = 0; i<importedData.length; i++){
-      const item = importedData[i];
-      
-      images[i].src = item[0];
-      quantities[i].innerText = item[1];
-
-      if (item[1] === "1x") {
-        element = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
-        element.disabled = true;
-        element.classList.add("not-less");
-      }
-      names[i].innerText = item[2];
-      prices[i].innerText = item[3];
-
-      summary += parseFloat(item[3].slice(1)) * Number(item[1].slice(0, -1));
-
-      for (j=0; j<4; j++) {
-        choices[4*i + j].innerText = item[4+j];
-      };
-      instructions[i].innerText = item[8];
-    }
-
-    document.getElementsByClassName("summed-price")[0].innerText = "$" + summary.toFixed(2);
-  } else {
-    document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
-    document.getElementsByClassName("empty-cart")[0].style.display = "block";
-  }
-});
-
-
 addEventListener('load', (event) => {
+  sessionStorage.setItem("prevRadioValue", 0);
+  document.getElementsByClassName("add-to-cart")[0].disabled = true;
+
+
   const images = document.querySelectorAll(".img-container img");
   images.forEach(function(image) {
     const width = image.scrollWidth;
     const height = image.scrollHeight;
-    
+
     if (width > height) {
       image.style.height = "100%";
       image.style.margin = "0 -" + ((width - height)*height /300) + "px";
@@ -59,114 +15,201 @@ addEventListener('load', (event) => {
       image.style.width = "100%";
     };
   });
+});
 
 
-  Array.from(document.querySelectorAll("input[type=text]")).forEach( function(element) {
-  element.addEventListener("keyup", (event) => {
-    if (event.key === "Enter") {
-      verifyCode(element);
-    }
-  })
-  });
-})
+function showPopUp(clicked) {
+  const popUp = document.getElementsByClassName("presentation")[0];
+  popUp.style.visibility = "visible";
 
 
-function showInfo(element) {
-  try{
-    element.parentElement.nextElementSibling.children[0].classList.toggle("shown");
-  } catch (e) {
-    element.previousElementSibling.children[0].classList.toggle("shown");
-  }
+  popUp.getElementsByClassName("product-img")[0].src = clicked.getElementsByTagName("img")[0].src;
+  popUp.getElementsByClassName("poped-food-name")[0].innerText = clicked.getElementsByClassName("food-name")[0].innerText;
+  popUp.getElementsByClassName("poped-price")[0].getElementsByTagName("span")[0].innerText = clicked.getElementsByClassName("price")[0].innerText;
+
+
+  document.onclick = function(element) {
+    if (element.target.className === "presentation"  ||  element.target.className === "close"  ||  element.target.className === "add-to-cart active") {
+      document.getElementsByClassName("pop-up")[0].scrollTop = 0;
+
+
+      popUp.style.visibility = "hidden";
+
+
+      document.querySelectorAll(".item input").forEach(element => element.checked = false);
+      sessionStorage.setItem("prevRadioValue", 0);
+
+      document.querySelectorAll("input:disabled").forEach(element => {
+        element.disabled = false;
+        element.closest(".item-and-price").classList.remove("disabled");
+      });
+
+      document.getElementsByClassName("add-to-cart")[0].disabled = true;
+
+
+      document.getElementsByClassName("add-to-cart")[0].classList.remove("active");
+      document.getElementsByClassName("add-to-cart")[0].innerText = "COMPLETE REQUIRED INFO";
+
+
+      document.getElementsByClassName("amount")[0].innerText = 1;
+      const minusButton = document.querySelector(".quantity button")
+      
+      minusButton.disabled = true;
+      minusButton.classList.add("not-less");
+    };
+  };
 }
 
 
-function orderedQty (value, element) {
-  let quantity = element.closest(".price-summary").getElementsByClassName("ordered-quantity")[0];
+function buttonActivity() {
+  const checkboxes = document.querySelectorAll("input[name=toss-ins]:checked");
+  const button = document.getElementsByClassName("add-to-cart")[0];
 
-  if (value === -1  &&  quantity.innerText === "2x") {
-    element.disabled = true;
-    element.classList.add("not-less");
-    
-  } else if (quantity.innerText === "1x") {
-    element.nextElementSibling.disabled = false;
-    element.nextElementSibling.classList.remove("not-less");
+  if (checkboxes.length > 0) {
+    const radio = document.querySelector("input[name=takeaway]:checked");
+
+    if (radio !== null) {
+      button.disabled = false;
+      button.classList.add("active");
+      button.innerText = "ADD TO CART";
+      return
+    };
   };
 
-  const multi = Number((quantity.innerText).slice(0, -1)) + value;
-  quantity.innerText = multi + "x";
-
-
-  let orderedArray = JSON.parse(localStorage.getItem("order"));
-  let quantityButtons = document.getElementsByClassName("modify-quantity");
-
-  let i = 0;
-  while (quantityButtons[i] !== element.parentElement) i++;
-
-  orderedArray[i][1] = Number(orderedArray[i][1].slice(0, -1)) + value + "x";
-  localStorage.setItem("order", JSON.stringify(orderedArray));
-
-
-  let price = parseFloat(element.closest(".price-summary").getElementsByClassName("price")[0].innerText.slice(1));
-  let promo = document.getElementsByClassName("promo")[0].innerText;
-  if (promo.slice(-1) === "%") price *= (100 + parseFloat(promo.slice(promo.indexOf("-"), -1)))/100;
-  summary = document.getElementsByClassName("summed-price")[0];
-  summary.innerText = "$" + (parseFloat(summary.innerText.slice(1)) + value*price).toFixed(2);
+  button.disabled = true;
+  button.classList.remove("active");
+  button.innerText = "COMPLETE REQUIRED INFO";
 }
 
 
-function trashItem (item) {
-  let price = parseFloat(item.closest(".money-summary").getElementsByClassName("price")[0].innerText.slice(1));
-  let promo = document.getElementsByClassName("promo")[0].innerText;
-  if (promo.slice(-1) === "%") price *= (100 + parseFloat(promo.slice(promo.indexOf("-"), -1)))/100;
+function addPrice (element) {
+  const quantity = Number(document.getElementsByClassName("amount")[0].innerText);
+  let string = element.closest(".item-and-price").querySelector(".item-price span").innerText;
 
+  if (string !== "FREE") {
+    let value = parseFloat(string.slice(2));
+    let price = parseFloat((document.querySelector(".poped-price span").innerText).slice(1));
+    
+    if (element.parentNode.className == "custom-radio") {
+      prev = sessionStorage.getItem("prevRadioValue");
 
-  let orderedArray = JSON.parse(localStorage.getItem("order"));
-  let trashButtons = document.getElementsByClassName("trash");
-
-  let i = 0;
-  while (trashButtons[i] !== item) i++;
-
-  orderedArray.splice(i, i);
-  localStorage.setItem("order", JSON.stringify(orderedArray));
-
-
-  let quantity = Number(item.closest(".money-summary").getElementsByClassName("ordered-quantity")[0].innerText.slice(0, -1));
-  let summary = document.getElementsByClassName("summed-price")[0];
-  summary.innerText = "$" + Math.max((parseFloat(summary.innerText.slice(1)) - price * quantity).toFixed(2), 0);
-  item.closest("li").remove();
-
-
-  if (document.querySelector("#items li") === null) {
-    document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
-    document.getElementsByClassName("empty-cart")[0].style.display = "block";
-  }
-}
-
-
-function verifyCode (element) {
-  inputed = element.closest(".submitions").querySelector("input[type=text]").value.toLowerCase();
-  let a = JSON.parse(localStorage.getItem("codes"));
-  
-  a.forEach ( function(codeArray) {
-    if (codeArray[0] == inputed) {
-      document.getElementsByClassName("submitions")[0].style.display = "none";
-      document.getElementsByClassName("submitions")[1].style.display = "none";
-      document.getElementsByClassName("promo")[0].innerText += codeArray[1];
-      document.getElementsByClassName("promo")[1].innerText += codeArray[1];
-
-      summary = document.getElementsByClassName("summed-price")[0];
-      if (codeArray[1].slice(-1) === "%") {
-        summary.innerText = "$" + (parseFloat(summary.innerText.slice(1)) * (100 + parseFloat(codeArray[1].slice(1, -1)))/100).toFixed(2);
-      } else if (codeArray[1].slice(-1) === "$") {
-        summary.innerText = "$" + (parseFloat(summary.innerText.slice(1)) + parseFloat(codeArray[1].slice(1, -1))).toFixed(2);
-      }
+      sessionStorage.setItem("prevRadioValue", value);
+      value -= prev;
     }
-  });
-  element.closest(".submitions").querySelector("input[type=text]").value = "";
+    if (element.checked) {
+        document.querySelector(".poped-price span").innerText = "$" + (price + value * quantity).toFixed(2);
+      } else {
+        document.querySelector(".poped-price span").innerText = "$" + (price - value * quantity).toFixed(2);
+    };
+
+  } else if (element.parentNode.className == "custom-radio") {
+    let prev = sessionStorage.getItem("prevRadioValue");
+  
+    sessionStorage.setItem("prevRadioValue", 0);
+
+    let popedPrice = document.querySelector(".poped-price span")
+    popedPrice.innerText = "$" + (parseFloat((popedPrice.innerText).slice(1)) - prev * quantity).toFixed(2);
+  };
 }
 
 
-function paymentSelected() {
-  document.getElementsByClassName("payment-text")[0].innerText = "Finalise order ";
-  document.getElementsByClassName("link-to-payment")[0].innerText = "here";
+function changeQty (value) {
+  let quantity = document.getElementsByClassName("amount")[0];
+  let minusButton = document.querySelector(".quantity button");
+
+  if (value === -1  &&  quantity.innerText === "2") {
+    minusButton.disabled = true;
+    minusButton.classList.add("not-less");
+    
+  } else if (quantity.innerText === "1") {
+    minusButton.disabled = false;
+    minusButton.classList.remove("not-less");
+  };
+
+  const multi = Number(quantity.innerText) + value;
+  quantity.innerText = multi;
+
+  document.querySelector(".poped-price span").innerText = "$" + ((parseFloat(document.querySelector(".poped-price span").innerText.slice(1)) /(multi - value) *multi).toFixed(2));
+}
+
+
+function addToCart () {
+  let alertClass = document.getElementsByClassName("added-to-cart")[0].classList;
+  alertClass.add("show-added-to-cart")
+
+  const productImg = document.getElementsByClassName("product-img")[0].src;
+  const amount = document.getElementsByClassName("amount")[0].innerText + "x";
+  const foodName = document.getElementsByClassName("poped-food-name")[0].innerText;
+
+  document.querySelector(".short-description img").src = productImg;
+  document.getElementsByClassName("count")[0].innerText = amount;
+  document.getElementsByClassName("name")[0].innerText = foodName;
+
+  document.getElementsByClassName("add-to-cart")[0].disabled = true;
+  
+  document.querySelectorAll("input:disabled").forEach(element => {
+    element.disabled = false;
+    element.closest(".item-and-price").classList.remove("disabled");
+  });
+
+
+  const price = "$" + (parseFloat((document.querySelector(".poped-price span").innerText).slice(1)) / amount.slice(0, -1)).toFixed(2);
+  
+  const eatIn = document.querySelector("input[name=takeaway]:checked").nextElementSibling.nextElementSibling.innerText;
+
+  let tossIns = []
+  Array.from(document.querySelectorAll("input[name=toss-ins]:checked")).forEach(element => {
+    tossIns.push(element.nextElementSibling.nextElementSibling.innerText);
+  })
+
+  let dressing = []
+  Array.from(document.querySelectorAll("input[name=dressing]:checked")).forEach(element => {
+    dressing.push(element.nextElementSibling.nextElementSibling.innerText);
+  })
+
+  let addOns = []
+  Array.from(document.querySelectorAll("input[name=add-ons]:checked")).forEach(element => {
+    addOns.push(element.nextElementSibling.nextElementSibling.innerText);
+  })
+
+  const text = document.getElementsByTagName("textarea")[0].value;
+
+
+  let exportData = [productImg, amount, foodName, price, eatIn, tossIns, dressing, addOns, text]
+
+  let dataArray = JSON.parse(localStorage.getItem("order"));
+  if (dataArray === null) {
+    dataArray = [];
+  }
+  
+  dataArray[dataArray.length] = exportData;
+  localStorage.setItem("order", JSON.stringify(dataArray));
+
+  document.getElementsByTagName("textarea")[0].value = "";
+
+  setTimeout(() => {alertClass.remove("show-added-to-cart")}, 4000);
+}
+
+
+function maxSelected(name) {
+  const tossInsLimit = 3;
+  const dressingLimit = 2;
+
+  const currentLimit = (name === "toss-ins" ? tossInsLimit : dressingLimit);
+
+  const checkboxes = document.querySelectorAll("input[name=" + name + "]:checked");
+  const theRest = document.querySelectorAll("input[name=" + name + "]:not(:checked)");
+
+
+  if (checkboxes.length == currentLimit) {
+    theRest.forEach(element => {
+      element.closest(".item-and-price").classList.add("disabled");
+      element.disabled = true;
+    });
+  } else {
+    theRest.forEach(element => {
+      element.closest(".item-and-price").classList.remove("disabled");
+      element.disabled = false;
+    });
+  };
 }
