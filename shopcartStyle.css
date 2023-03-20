@@ -221,7 +221,6 @@ li .img-container {
 
 .payment-options span, .payment-options a {
   padding: 10px 0;
-  font-size: 1.7rem;
   color: black;
 }
 
@@ -229,14 +228,6 @@ li .img-container {
   border-bottom: none;
   padding: 8px 16px 16px;
 }
-
-/*.discounts span {
-  padding-right: 0;
-}
-
-.submitions {
-  padding-left: 10px;
-}*/
 
 .submitions input {
   position: relative;
@@ -361,7 +352,7 @@ iframe {
   }
 
   .personalizations .inputed-info {
-    visibility: visible;
+    visibility: inherit;
     opacity: 1;
     width: 550px;
     height: 18px;
