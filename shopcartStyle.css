@@ -361,6 +361,10 @@ iframe {
     border: none;
   }
 
+  .personalizations button {
+    cursor: text;
+  }
+
   .inputed-text {
     left: -200px;
   }
