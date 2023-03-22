@@ -457,12 +457,15 @@ html {
   background-color: var(--light-bg-color);
   border-radius: 10px;
   border: 2px solid rgba(48, 50, 59, 0.5);
-  padding: 10px;
-  transition: 1s cubic-bezier(0.77, 0, 0.175, 1) 0s;
+  padding: 10px;-ms-transform: translateX(110%);
+  transform: translateX(110%);
+  transition: 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0s;
 }
 
 .show-added-to-cart {
   opacity: 1;
+  -ms-transform: translateX(0);
+  transform: translateX(0);
 }
 
 .short-description {
