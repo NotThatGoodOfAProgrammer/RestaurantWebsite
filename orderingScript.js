@@ -135,7 +135,7 @@ function changeQty (value) {
 
 function addToCart () {
   let alertClass = document.getElementsByClassName("added-to-cart")[0].classList;
-  alertClass.add("show-added-to-cart")
+  alertClass.add("show-added-to-cart");
 
   const productImg = document.getElementsByClassName("product-img")[0].src;
   const amount = document.getElementsByClassName("amount")[0].innerText + "x";
@@ -187,7 +187,7 @@ function addToCart () {
 
   document.getElementsByTagName("textarea")[0].value = "";
 
-  setTimeout(() => {alertClass.remove("show-added-to-cart")}, 4000);
+  setTimeout(() => {alertClass.remove("show-added-to-cart")}, 6000);
 }
 
 
