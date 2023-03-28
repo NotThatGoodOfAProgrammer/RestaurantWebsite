@@ -1,0 +1,157 @@
+.site-content ul {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.site-content li {
+  flex-grow: 1;
+  flex-basis: 95%;
+  margin: 10px;
+}
+
+#new-comment {
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.submit-button {
+  cursor: default;
+  line-height: 2;
+  width: 220px;
+  border-style: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 10px;
+  background-color: rgb(182, 70, 95, 0.7);
+}
+
+.active:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em;
+  transform: translateY(-0.25em);
+}
+
+.active {
+  cursor: pointer;
+  background-color: var(--aiding-color);
+  transition: .3s;
+}
+
+.confirmation {
+  text-align: center;
+  display: none;
+  opacity: 0;
+  box-sizing: border-box;
+  position: absolute;
+  padding: 20px 10px;
+  top: 10px;
+  height: 200px;
+  width: 100%;
+  background-color: var(--light-el-color);
+  transition: 0.4s;
+}
+
+.confirmation span{
+  padding: 0;
+}
+
+.confirmation div {
+  margin-top: 20px;
+}
+
+.input-name {
+  margin-top: 10px;
+  position: relative;
+  top: 2px;
+  border-radius: 8px;
+  height: 30px;
+  width: 150px;
+  background-color: rgb(204, 204, 204);
+  border-style: none;
+  outline: none;
+  padding-inline: 10px;
+}
+
+.confirmation button {
+  border-style: none;
+  padding: 0;
+  background-color: inherit;
+}
+
+.confirmation img {
+  height: 30px;
+}
+
+.textarea-container {
+  margin-top: 15px;
+  height: 150px;
+  padding: 15px;
+  border: var(--border-style);
+  background-color: rgb(204, 204, 204);
+  border-radius: 10px;
+}
+
+.textarea-container textarea {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(204, 204, 204);
+  resize: none;
+  border: none;
+}
+
+.textarea-container textarea:focus {
+  outline: 0;
+}
+
+/* comments */
+.comment-container {
+  padding-bottom: 5px;
+  border-radius: 34px;
+  border: var(--border-style);
+  border-width: 5px;
+}
+
+.name-container {
+  text-align: left;
+  padding: 10px;
+  padding-left: 20px;
+  border-bottom: var(--border-style);
+}
+
+.comment {
+  padding: 5px;
+}
+
+.comment span{
+  padding: 0;
+  font-size: 1.2rem;
+}
+
+.show-more {
+  border-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: inherit;
+}
+
+.show-more em{
+  padding: 0;
+  font-size: 0.9rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.more {
+  display: none;
+}
+
+
+@media (min-width: 920px) {
+  .site-content section {
+    width: 840px;
+  }
+
+  .comment {
+    width: 800px;
+  }
+}

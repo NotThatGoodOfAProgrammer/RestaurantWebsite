@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <title>MouthwateringMeals</title>
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/clouds/512/globe--v2.png">
+    <link rel="stylesheet" href="restaurantStyle.css">
+    <link rel="stylesheet" href="reviewsStyle.css">
+    <script src="reviewsScript.js"></script>
+    <script src="restaurantScript.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
+      <div id="navbar-container">
+        <button class="tab" onclick="openMenu()"><img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png"></button>
+      </div>
+    </nav>
+    <div class="tab-content">
+      <ul>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/about-us.html">About us</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/reviews.html">Reviews</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/menu.html">Menu</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/order-online.html">Order online</a>
+        </li>
+        <li>
+          <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html">Shopcart</a>
+        </li>
+        <label class="dark-mode-switch">
+          <input type="checkbox" onchange="changeMode()">
+          <span class="dark-mode-slider"></span>
+        </label>
+      </ul>
+      <div class="contact-box">
+        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
+        <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+      </div>
+    </div>
+    <div class="site-content">
+      <section id="new-comment">
+        <div>
+          <button class="submit-button" onclick="finaliseComment(this)" disabled>
+            <span>Submit comment</span>
+          </button>
+          <div class="fluid-row">
+            <div class="confirmation">
+              <span>If you want to submit your comment please enter your name below:</span>
+              <div>
+                <input class="input-name" type="text" placeholder="Enter your name" maxlength="30">
+                <button onclick="submitComment()">
+                  <img src="https://img.icons8.com/ios/256/enter-key.png">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="textarea-container">
+            <textarea placeholder="Share your experience here!" maxlength="10000" oninput="activateButton(this.value)"></textarea>
+          </div>
+        </div>
+      </section>
+      <section id="comments">
+        <ul>
+          <li>
+            <div class="comment-container">
+              <div class="name-container">
+                <span class="name">Placeholder</span>
+              </div>
+              <div class="comment">
+                <span>Placeholder</span
+                ><span class="more">Placeholder</span>
+                <button class="show-more" onclick="showMore(this)"><em>... show more</em></button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section id="contact">
+        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
+        <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+      </section>
+    </div>
+  </body>
+</html>
