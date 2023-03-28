@@ -88,11 +88,6 @@ section {
   padding: 0;
 }
 
-.fluid-row {
-  position: relative;
-  height: 0px;
-}
-
 .inputed-info {
   padding: 5px;
 }
@@ -246,7 +241,6 @@ li .img-container {
   border-style: none;
   padding: 0;
   padding-right: 10px;
-  margin: 0;
   background-color: inherit;
 }
 
