@@ -171,11 +171,6 @@ html {
   overflow-x: hidden;
 }
 
-.fluid-row {
-  position: relative;
-  height: 0px;
-}
-
 .close-button-container {
   position: absolute;
   top: 16px;
@@ -304,6 +299,7 @@ html {
 
 .instruction-container {
   padding: 15px;
+  height: 100px;
   border: var(--border-style);
   background-color: rgb(204, 204, 204);
   border-radius: 10px;
