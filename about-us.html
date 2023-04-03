@@ -12,9 +12,11 @@
   </head>
   <body>
     <nav>
-      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/" target="_blank"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
+      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
       <div id="navbar-container">
-        <button class="tab" onclick="openMenu()"><img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png"></button>
+        <button class="tab" onclick="document.getElementsByClassName('tab-content')[0].classList.toggle('tab-open')">
+          <img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png">
+        </button>
       </div>
     </nav>
     <div class="tab-content">
@@ -34,11 +36,13 @@
         <li>
           <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html">Shopcart</a>
         </li>
+      </ul>
+      <div class="switch-container">
         <label class="dark-mode-switch">
           <input type="checkbox" onchange="changeMode()">
           <span class="dark-mode-slider"></span>
         </label>
-      </ul>
+      </div>
       <div class="contact-box">
         <p><a href="https://github.com/NotThatGoodOfAProgrammer">Site author: Armatys Konrad</a></p>
         <p class="email-info" onclick="copyContact(this.className, 0)">E-mail: MouthwateringMeals@gmail.com</p>
