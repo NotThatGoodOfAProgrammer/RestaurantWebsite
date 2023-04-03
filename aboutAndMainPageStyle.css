@@ -10,7 +10,6 @@
   transform: scale(0.8, 0.8);
   transition: transform 3s 0.25s cubic-bezier(0, 1, 0.3 ,1),
               opacity 0.3s 0.25s ease-out;
-  will-change: transform, opacity;
 }
 
 .site-content img.is-visible {
