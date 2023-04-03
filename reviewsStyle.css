@@ -38,6 +38,8 @@
 }
 
 .confirmation {
+  flex-direction: column;
+  justify-content: center;
   text-align: center;
   display: none;
   opacity: 0;
