@@ -100,7 +100,7 @@ function orderedQty (value, element) {
   localStorage.setItem("order", JSON.stringify(orderedArray));
 
 
-  price = priceIncludingCode()
+  price = priceIncludingCode(element);
 
   summary = document.getElementsByClassName("summed-price")[0];
   const currPrice = parseFloat(summary.innerText.slice(1));
@@ -108,24 +108,24 @@ function orderedQty (value, element) {
 }
 
 
-function trashItem (item) {
-  price = priceIncludingCode()
+function trashItem(item) {
+  price = priceIncludingCode(item);
+  
 
   let orderedArray = JSON.parse(localStorage.getItem("order"));
   const trashButtons = document.getElementsByClassName("trash");
 
   let i = 0;
   while (trashButtons[i] !== item) i++;
-
+  
   orderedArray.splice(i, i);
   localStorage.setItem("order", JSON.stringify(orderedArray));
-
+  
   const quantityElement = item.closest(".money-summary").getElementsByClassName("ordered-quantity")[0];
   const quantity = Number(quantityElement.innerText.slice(0, -1));
   const summary = document.getElementsByClassName("summed-price")[0];
   const priceWithCode = parseFloat(summary.innerText.slice(1)) - price * quantity
   summary.innerText = "$" + Math.max((priceWithCode).toFixed(2), 0);
-
 
   item.closest("li").remove();
 
@@ -135,7 +135,7 @@ function trashItem (item) {
 }
 
 
-function priceIncludingCode() {
+function priceIncludingCode(item) {
   const priceElement = item.closest(".money-summary").getElementsByClassName("price")[0];
   let price = parseFloat(priceElement.innerText.slice(1));
 
