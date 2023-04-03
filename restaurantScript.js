@@ -1,8 +1,3 @@
-function openMenu () {
-  document.getElementsByClassName("tab-content")[0].classList.toggle("tab-content-open");
-}
-
-
 function changeMode () {
   const theme = document.querySelector(".dark-mode-switch input").checked ? "dark" : "light";
   localStorage.setItem("theme", theme);
@@ -23,6 +18,10 @@ function changeMode () {
   
     document.getElementsByClassName("added-to-cart")[0].classList.toggle("dark");
   } catch (e) {};
+
+  try {
+    document.getElementsByClassName("confirmation")[0].classList.toggle("dark-mode");
+  } catch (e) {};
 }
 
 
@@ -35,7 +34,7 @@ function copyContact (element) {
 }
 
 
-addEventListener('load', (event) => {
+addEventListener('load', () => {
   const setting = localStorage.getItem("theme");
   let preference = setting;
   if (! setting) {
