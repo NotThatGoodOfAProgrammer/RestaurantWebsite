@@ -14,7 +14,9 @@
     <nav>
       <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
       <div id="navbar-container">
-        <button class="tab" onclick="openMenu()"><img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png"></button>
+        <button class="tab" onclick="document.getElementsByClassName('tab-content')[0].classList.toggle('tab-open')">
+          <img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png">
+        </button>
       </div>
     </nav>
     <nav class="food-navbar">
@@ -42,11 +44,13 @@
         <li>
           <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html">Shopcart</a>
         </li>
+      </ul>
+      <div class="switch-container">
         <label class="dark-mode-switch">
           <input type="checkbox" onchange="changeMode()">
           <span class="dark-mode-slider"></span>
         </label>
-      </ul>
+      </div>
       <div class="contact-box">
         <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
         <p class="email-info" onclick="copyContact(this.className, 0)">E-mail: MouthwateringMeals@gmail.com</p>
@@ -320,11 +324,11 @@
                         <label class="custom-radio">
                           <input type="radio" name="takeaway" value="eat-in" onchange="buttonActivity(); addPrice(this)">
                           <span class="radio-dot"></span>
-                          <span>Eat in</span>
+                          <span class="option-name">Eat in</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>FREE</span>
+                      <div class="item-price-container">
+                        <span class="item-price">FREE</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -332,11 +336,11 @@
                         <label class="custom-radio">
                           <input type="radio" name="takeaway" value="paper" onchange="buttonActivity(); addPrice(this)">
                           <span class="radio-dot"></span>
-                          <span>Paper packaging</span>
+                          <span class="option-name">Paper packaging</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$3.00</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$3.00</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -344,11 +348,11 @@
                         <label class="custom-radio">
                           <input type="radio" name="takeaway" value="plastic" onchange="buttonActivity(); addPrice(this)">
                           <span class="radio-dot"></span>
-                          <span>Plastic packaging</span>
+                          <span class="option-name">Plastic packaging</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$2.00</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$2.00</span>
                       </div>
                     </div>
                   </fieldset>
@@ -368,11 +372,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="toss-ins" onchange="maxSelected(this.name); buttonActivity(); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Ice-cube</span>
+                          <span class="option-name">Ice-cube</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>FREE</span>
+                      <div class="item-price-container">
+                        <span class="item-price">FREE</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -380,11 +384,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="toss-ins" onchange="maxSelected(this.name); buttonActivity(); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Lime-slice</span>
+                          <span class="option-name">Lime-slice</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$0.20</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$0.20</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -392,11 +396,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="toss-ins" onchange="maxSelected(this.name); buttonActivity(); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Nuts</span>
+                          <span class="option-name">Nuts</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$1.00</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$1.00</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -404,11 +408,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="toss-ins" onchange="maxSelected(this.name); buttonActivity(); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Fresh basil</span>
+                          <span class="option-name">Fresh basil</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$0.30</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$0.30</span>
                       </div>
                     </div>
                   </fieldset>
@@ -425,11 +429,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="dressing" onchange="maxSelected(this.name); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Tomato sauce</span>
+                          <span class="option-name">Tomato sauce</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$1.30</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$1.30</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -437,11 +441,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="dressing" onchange="maxSelected(this.name); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Ketchup</span>
+                          <span class="option-name">Ketchup</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$0.70</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$0.70</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -449,11 +453,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="dressing" onchange="maxSelected(this.name); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Garlic sauce</span>
+                          <span class="option-name">Garlic sauce</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$1.30</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$1.30</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -461,11 +465,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="dressing" onchange="maxSelected(this.name); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Vinaigrette</span>
+                          <span class="option-name">Vinaigrette</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$2.00</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$2.00</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -473,11 +477,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="dressing" onchange="maxSelected(this.name); addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Honey-mustard</span>
+                          <span class="option-name">Honey-mustard</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$1.00</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$1.00</span>
                       </div>
                     </div>
                   </fieldset>
@@ -494,11 +498,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="add-ons" onchange="addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Fried onion</span>
+                          <span class="option-name">Fried onion</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$1.50</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$1.50</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -506,11 +510,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="add-ons" onchange="addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Chocolate</span>
+                          <span class="option-name">Chocolate</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$3.50</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$3.50</span>
                       </div>
                     </div>
                     <div class="item-and-price">
@@ -518,11 +522,11 @@
                         <label class="custom-checkbox">
                           <input type="checkbox" name="add-ons" onchange="addPrice(this)">
                           <span class="checkmark"></span>
-                          <span>Fruit mix</span>
+                          <span class="option-name">Fruit mix</span>
                         </label>
                       </div>
-                      <div class="item-price">
-                        <span>+$5.00</span>
+                      <div class="item-price-container">
+                        <span class="item-price">+$5.00</span>
                       </div>
                     </div>
                   </fieldset>
@@ -536,18 +540,18 @@
             </div>
             <div class="finalise-order">
               <div class="summary">
-                <div class="quantity">
+                <div class="quantity-container">
                   <span>Qty</span>
                   <button type="button" class="not-less" onclick="changeQty(-1)">
                     <img src="https://img.icons8.com/ios/256/minus.png">
                   </button>
-                  <span class="amount">1</span>
+                  <span class="quantity">1</span>
                   <button type="button" onclick="changeQty(1)">
                     <img src="https://img.icons8.com/ios/256/add.png">
                   </button>
                 </div>
-                <div class="poped-price">
-                  <span>Placeholder</span>
+                <div class="poped-price-container">
+                  <span class="poped-price">Placeholder</span>
                 </div>
               </div>
               <button type="button" class="add-to-cart" onclick="addToCart()">COMPLETE REQUIRED INFO</button>
@@ -568,7 +572,9 @@
         </div>
       </div>
       <div>
-        <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html"><button>Go to Shopcart</button></a>
+        <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/shopcart.html">
+          <button>Go to Shopcart</button>
+        </a>
       </div>
     </div>
   </body>
