@@ -1,11 +1,11 @@
-addEventListener('DOMContentLoaded', (event) => {
+addEventListener('DOMContentLoaded', () => {
   localStorage.setItem("codes", JSON.stringify([["code", " -10%"], ["easter egg", " -20$"]]));
   
   const importedData = JSON.parse(localStorage.getItem("order"));
   if (importedData !== null) {
     for (i = 1; i<importedData.length; i++){
-      let a = document.getElementById("items").getElementsByTagName("li")[0].cloneNode(true);
-      document.getElementById("items").getElementsByTagName("ul")[0].appendChild(a);
+      const clone = document.getElementById("items").getElementsByTagName("li")[0].cloneNode(true);
+      document.getElementById("items").getElementsByTagName("ul")[0].appendChild(clone);
     }
 
     const names = document.getElementsByClassName("food-name");
@@ -23,9 +23,9 @@ addEventListener('DOMContentLoaded', (event) => {
       quantities[i].innerText = item[1];
 
       if (item[1] === "1x") {
-        element = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
-        element.disabled = true;
-        element.classList.add("not-less");
+        button = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
+        button.disabled = true;
+        button.classList.add("not-less");
       }
       names[i].innerText = item[2];
       prices[i].innerText = item[3];
@@ -40,27 +40,18 @@ addEventListener('DOMContentLoaded', (event) => {
 
     document.getElementsByClassName("summed-price")[0].innerText = "$" + summary.toFixed(2);
   } else {
-    document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
-    document.getElementsByClassName("empty-cart")[0].style.display = "block";
+    emptyCart();
   }
 });
 
 
-addEventListener('load', (event) => {
-  const images = document.querySelectorAll(".img-container img");
-  images.forEach(function(image) {
-    const width = image.scrollWidth;
-    const height = image.scrollHeight;
-    
-    if (width > height) {
-      image.style.height = "100%";
-      image.style.margin = "0 -" + ((width - height)*height /300) + "px";
-    } else {
-      image.style.width = "100%";
-    };
-  });
+function emptyCart() {
+  document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
+  document.getElementsByClassName("empty-cart")[0].style.display = "block";
+}
 
 
+addEventListener('load', () => {
   Array.from(document.querySelectorAll("input[type=text]")).forEach( function(element) {
   element.addEventListener("keyup", (event) => {
     if (event.key === "Enter") {
@@ -75,53 +66,53 @@ function showInfo(element) {
   try{
     element.parentElement.nextElementSibling.children[0].classList.toggle("shown");
   } catch (e) {
-    element.previousElementSibling.children[0].classList.toggle("shown");
+    element.parentElement.getElementsByClassName("inputed-text")[0].classList.toggle("shown");
   }
 }
 
 
 function orderedQty (value, element) {
-  let quantity = element.closest(".price-summary").getElementsByClassName("ordered-quantity")[0];
+  const quantityElement = element.closest(".price-summary").getElementsByClassName("ordered-quantity")[0];
 
-  if (value === -1  &&  quantity.innerText === "2x") {
+  if (value === -1  &&  quantityElement.innerText === "2x") {
     element.disabled = true;
     element.classList.add("not-less");
     
-  } else if (quantity.innerText === "1x") {
-    element.nextElementSibling.disabled = false;
-    element.nextElementSibling.classList.remove("not-less");
+  } else if (quantityElement.innerText === "1x") {
+    minusButton = element.nextElementSibling;
+
+    minusButton.disabled = false;
+    minusButton.classList.remove("not-less");
   };
 
-  const multi = Number((quantity.innerText).slice(0, -1)) + value;
-  quantity.innerText = multi + "x";
+  const quantity = Number((quantityElement.innerText).slice(0, -1));
+  quantityElement.innerText = quantity + value + "x";
 
 
   let orderedArray = JSON.parse(localStorage.getItem("order"));
-  let quantityButtons = document.getElementsByClassName("modify-quantity");
+  const quantityButtons = document.getElementsByClassName("modify-quantity");
 
   let i = 0;
   while (quantityButtons[i] !== element.parentElement) i++;
 
-  orderedArray[i][1] = Number(orderedArray[i][1].slice(0, -1)) + value + "x";
+  const dishPrice = Number(orderedArray[i][1].slice(0, -1));
+  orderedArray[i][1] = dishPrice + value + "x";
   localStorage.setItem("order", JSON.stringify(orderedArray));
 
 
-  let price = parseFloat(element.closest(".price-summary").getElementsByClassName("price")[0].innerText.slice(1));
-  let promo = document.getElementsByClassName("promo")[0].innerText;
-  if (promo.slice(-1) === "%") price *= (100 + parseFloat(promo.slice(promo.indexOf("-"), -1)))/100;
+  price = priceIncludingCode()
+
   summary = document.getElementsByClassName("summed-price")[0];
-  summary.innerText = "$" + (parseFloat(summary.innerText.slice(1)) + value*price).toFixed(2);
+  const currPrice = parseFloat(summary.innerText.slice(1));
+  summary.innerText = "$" + (currPrice + value*price).toFixed(2);
 }
 
 
 function trashItem (item) {
-  let price = parseFloat(item.closest(".money-summary").getElementsByClassName("price")[0].innerText.slice(1));
-  let promo = document.getElementsByClassName("promo")[0].innerText;
-  if (promo.slice(-1) === "%") price *= (100 + parseFloat(promo.slice(promo.indexOf("-"), -1)))/100;
-
+  price = priceIncludingCode()
 
   let orderedArray = JSON.parse(localStorage.getItem("order"));
-  let trashButtons = document.getElementsByClassName("trash");
+  const trashButtons = document.getElementsByClassName("trash");
 
   let i = 0;
   while (trashButtons[i] !== item) i++;
@@ -129,36 +120,61 @@ function trashItem (item) {
   orderedArray.splice(i, i);
   localStorage.setItem("order", JSON.stringify(orderedArray));
 
+  const quantityElement = item.closest(".money-summary").getElementsByClassName("ordered-quantity")[0];
+  const quantity = Number(quantityElement.innerText.slice(0, -1));
+  const summary = document.getElementsByClassName("summed-price")[0];
+  const priceWithCode = parseFloat(summary.innerText.slice(1)) - price * quantity
+  summary.innerText = "$" + Math.max((priceWithCode).toFixed(2), 0);
 
-  let quantity = Number(item.closest(".money-summary").getElementsByClassName("ordered-quantity")[0].innerText.slice(0, -1));
-  let summary = document.getElementsByClassName("summed-price")[0];
-  summary.innerText = "$" + Math.max((parseFloat(summary.innerText.slice(1)) - price * quantity).toFixed(2), 0);
+
   item.closest("li").remove();
 
-
   if (document.querySelector("#items li") === null) {
-    document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
-    document.getElementsByClassName("empty-cart")[0].style.display = "block";
+    emptyCart();
   }
 }
 
 
-function verifyCode (element) {
-  inputed = element.closest(".submitions").querySelector("input[type=text]").value.toLowerCase();
-  let a = JSON.parse(localStorage.getItem("codes"));
-  
-  a.forEach ( function(codeArray) {
-    if (codeArray[0] == inputed) {
-      document.getElementsByClassName("submitions")[0].style.display = "none";
-      document.getElementsByClassName("submitions")[1].style.display = "none";
-      document.getElementsByClassName("promo")[0].innerText += codeArray[1];
-      document.getElementsByClassName("promo")[1].innerText += codeArray[1];
+function priceIncludingCode() {
+  const priceElement = item.closest(".money-summary").getElementsByClassName("price")[0];
+  let price = parseFloat(priceElement.innerText.slice(1));
 
-      summary = document.getElementsByClassName("summed-price")[0];
+  const promo = document.getElementsByClassName("promo")[0].innerText;
+
+  if (promo.slice(-1) === "%"){
+    const numberedPrice = promo.slice(promo.indexOf("-"), -1);
+    price *= (100 + parseFloat(numberedPrice))/100;
+  }
+
+  return price;
+}
+
+
+function verifyCode (element) {
+  const inputElement = element.closest(".submitions").querySelector("input[type=text]");
+  const inputedText = inputElement.value.toLowerCase();
+  const codes = JSON.parse(localStorage.getItem("codes"));
+  
+  codes.forEach( codeArray => {
+    if (codeArray[0] === inputedText) {
+      const submitions = document.getElementsByClassName("submitions");
+      submitions[0].style.display = "none";
+      submitions[1].style.display = "none";
+
+      const promo = document.getElementsByClassName("promo");
+      promo[0].innerText += codeArray[1];
+      promo[1].innerText += codeArray[1];
+
+
+      const summaryElement = document.getElementsByClassName("summed-price")[0];
+      const summary = parseFloat(summaryElement.innerText.slice(1))
+
       if (codeArray[1].slice(-1) === "%") {
-        summary.innerText = "$" + (parseFloat(summary.innerText.slice(1)) * (100 + parseFloat(codeArray[1].slice(1, -1)))/100).toFixed(2);
+        const percentageToPay = (100 + parseFloat(codeArray[1].slice(1, -1)))/100;
+        summaryElement.innerText = "$" + (summary * percentageToPay).toFixed(2);
       } else if (codeArray[1].slice(-1) === "$") {
-        summary.innerText = "$" + (parseFloat(summary.innerText.slice(1)) + parseFloat(codeArray[1].slice(1, -1))).toFixed(2);
+        const moneyOff = summary + parseFloat(codeArray[1].slice(1, -1));
+        summaryElement.innerText = "$" + (moneyOff).toFixed(2);
       }
     }
   });
