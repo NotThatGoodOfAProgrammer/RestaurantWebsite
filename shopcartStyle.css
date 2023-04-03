@@ -97,14 +97,12 @@ li .img-container {
 }
 
 .img-container {
+  display: flex;
+  justify-content: center;
   flex-shrink: 0;
   height: inherit;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-}
-
-.img-container img {
-  height: 100%;
 }
 
 .money-summary {
@@ -281,8 +279,6 @@ fieldset {
   padding-left: 35px;
   cursor: pointer;
   font-size: 22px;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   height: 24px;
 }
