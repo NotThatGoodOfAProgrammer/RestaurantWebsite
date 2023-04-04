@@ -2,7 +2,8 @@ addEventListener('DOMContentLoaded', () => {
   localStorage.setItem("codes", JSON.stringify([["code", " -10%"], ["easter egg", " -20$"]]));
   
   const importedData = JSON.parse(localStorage.getItem("order"));
-  if (importedData !== null) {
+  
+  if (importedData !== null  &&  importedData.length > 0) {
     for (i = 1; i<importedData.length; i++){
       const clone = document.getElementById("items").getElementsByTagName("li")[0].cloneNode(true);
       document.getElementById("items").getElementsByTagName("ul")[0].appendChild(clone);
@@ -16,10 +17,11 @@ addEventListener('DOMContentLoaded', () => {
     const instructions = document.getElementsByClassName("inputed-text")
 
     let summary = 0;
-    for (i = 0; i<importedData.length; i++){
+    for (i = 0; i<importedData.length; i++) {
       const item = importedData[i];
       
       images[i].src = item[0];
+      images[i].alt = item[2];
       quantities[i].innerText = item[1];
 
       if (item[1] === "1x") {
@@ -63,11 +65,7 @@ addEventListener('load', () => {
 
 
 function showInfo(element) {
-  try{
     element.parentElement.nextElementSibling.children[0].classList.toggle("shown");
-  } catch (e) {
-    element.parentElement.getElementsByClassName("inputed-text")[0].classList.toggle("shown");
-  }
 }
 
 
@@ -118,7 +116,9 @@ function trashItem(item) {
   let i = 0;
   while (trashButtons[i] !== item) i++;
   
-  orderedArray.splice(i, i);
+  
+  orderedArray.splice(i, 1);
+  
   localStorage.setItem("order", JSON.stringify(orderedArray));
   
   const quantityElement = item.closest(".money-summary").getElementsByClassName("ordered-quantity")[0];
