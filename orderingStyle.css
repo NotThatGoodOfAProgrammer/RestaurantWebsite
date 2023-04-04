@@ -25,7 +25,6 @@ section {
   max-width: 640px;
   margin: 30px 20px;
   flex-grow: 1;
-  padding-top: 10px;
 }
 
 section:first-child {
@@ -41,6 +40,11 @@ section button {
 section button:hover, .active:hover, .added-to-cart button:hover {
   box-shadow: 0 0.5em 0.5em -0.4em;
   transform: translateY(-0.25em);
+}
+
+h1 {
+  margin: 20px 0 0;
+
 }
 
 /* food box */
@@ -129,7 +133,7 @@ html {
 
 .food-navbar span {
   margin: 0px 10px;
-  font-size: 20px;
+  font-size: 1.25rem;
 }
 
 .food-navbar button:hover {
@@ -138,8 +142,7 @@ html {
   fill: var(--aiding-color);
 }
 
-/* pop ups */
-
+/* poped up presentation */
 .presentation {
   top: 0;
   position: fixed;
@@ -199,6 +202,7 @@ html {
   border-bottom: var(--border-style);
 }
 
+/* poped up presentation summary */
 .finalise-order {
   display: flex;
   flex-wrap: wrap;
@@ -210,7 +214,7 @@ html {
 }
 
 .finalise-order span {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 500;
 }
 
@@ -353,7 +357,6 @@ html {
 }
 
 /* custom checkbox and radio button */
-
 .custom-checkbox, .custom-radio {
   display: flex;
   position: relative;
@@ -503,7 +506,6 @@ html {
 
 
 @media (min-width: 920px) {
-  /* navbar */
   section {
     width: min(calc(100% - 60px), 1040px);
     max-width: none;
