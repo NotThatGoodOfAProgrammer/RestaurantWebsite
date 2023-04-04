@@ -31,6 +31,7 @@ section {
   margin: 10px;
 }
 
+/* user personalization */
 .food-summary {
   background-color: var(--aiding-color);
   border-radius: 15px;
@@ -105,6 +106,7 @@ li .img-container {
   overflow: hidden;
 }
 
+/* dish costs */
 .money-summary {
   height: 50px;
   border-top: var(--border-style);
@@ -155,6 +157,7 @@ li .img-container {
   font-size: 1.3rem;
 }
 
+/* texts to show and trash button */
 .trash-and-list-container {
   display: flex;
   width: 150px;
@@ -178,6 +181,11 @@ li .img-container {
   text-align: left;
   z-index: 1;
   transition: 0.4s;
+  overflow: scroll;
+}
+
+.inputed-text::-webkit-scrollbar{
+  display: none;
 }
 
 .trash, .list {
@@ -200,8 +208,6 @@ li .img-container {
 /* summary */
 .summed-price-container, .discounts {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
   justify-content: center;
   border-bottom: var(--border-style);
   padding: 16px 16px 8px;
@@ -223,22 +229,26 @@ li .img-container {
   padding: 8px 16px 16px;
 }
 
-.submitions input {
-  position: relative;
-  top: 2px;
+.discounts label {
+  font-size: 1.5rem;
+}
+
+.discounts input {
+  vertical-align: middle;
   border-radius: 8px;
   height: 30px;
   width: 150px;
   background-color: rgb(204, 204, 204);
   border-style: none;
   outline: none;
-  padding-inline: 10px;
+  padding: 0 10px;
+  margin-left: 8px;
+  margin-right: 2px;
 }
 
-.submitions button {
+.discounts button {
   border-style: none;
   padding: 0;
-  padding-right: 10px;
   background-color: inherit;
 }
 
@@ -338,6 +348,11 @@ iframe {
 
 
 @media (min-width: 920px) {
+  iframe, .food-info {
+    width: 800px;
+  }
+  
+  /* texts to show and trash button */
   .trash, .list {
     padding-inline: 12px;
   }
@@ -359,6 +374,11 @@ iframe {
     left: -200px;
   }
 
+  .summary-text {
+    padding-left: 26px;
+  }
+
+  /* summary */
   #summary {
     width: 840px;
   }
@@ -375,15 +395,7 @@ iframe {
     justify-content: left;
   }
 
-  .summary-text {
-    padding-left: 26px;
-  }
-
   fieldset {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  iframe, .food-info {
-    width: 800px;
   }
 }
