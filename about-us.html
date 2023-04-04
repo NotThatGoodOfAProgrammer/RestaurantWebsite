@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width"/>
-    <title>MouthwateringMeals</title>
+    <meta name="description" content="Computer Science student's project. Implementation of image loading animation with JS.">
+    <title>Mouthwatering Meals</title>
     <link rel="icon" type="image/x-icon" href="https://img.icons8.com/clouds/512/globe--v2.png">
     <link rel="stylesheet" href="restaurantStyle.css">
     <link rel="stylesheet" href="aboutAndMainPageStyle.css">
@@ -12,10 +13,12 @@
   </head>
   <body>
     <nav>
-      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
+      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/">
+        <img alt="logo" src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f">
+      </a>
       <div id="navbar-container">
         <button class="tab" onclick="document.getElementsByClassName('tab-content')[0].classList.toggle('tab-open')">
-          <img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png">
+          <img alt="tab icon" id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png">
         </button>
       </div>
     </nav>
@@ -43,45 +46,47 @@
           <span class="dark-mode-slider"></span>
         </label>
       </div>
-      <div class="contact-box">
-        <p><a href="https://github.com/NotThatGoodOfAProgrammer">Site author: Armatys Konrad</a></p>
+      <address class="tab-contact">
+        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
         <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
         <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
-      </div>
+      </address>
     </div>
     <div class="site-content">
       <section id="foundation">
         <span>We are a family business founded in 2013 by Grandpa Joe. Since than we have expanded our local 3folds. After winning first reward in 2016 our restaurant have been gaining popularity rapidly.</span>
       </section>
-      <img class="show-on-scroll" src="https://www.shutterstock.com/image-vector/best-restaurant-award-vector-golden-600w-1384579919.jpg">
+      <img alt="award-logo" class="show-on-scroll" src="https://www.shutterstock.com/image-vector/best-restaurant-award-vector-golden-600w-1384579919.jpg">
       <section id="awards">
         <span>2016, 2020 - The best pierogi in the Poland</span>
         <span>2021 - The best dumpling restaurant in the World</span>
         <span>2021 - 2nd Greatest National Cuisine Restaurant in the World</span>
         <span>2022 - First Michelin Star</span>
       </section>
-      <img class="show-on-scroll" src="https://img.freepik.com/free-vector/cook-background-illustration_1284-9285.jpg?w=1380&t=st=1676365840~exp=1676366440~hmac=3d3a4b9a273ae25c46a31abc6deedc0f743b8d433c564a3e1a1915a5972e5613">
+      <img alt="pastel art of chef" class="show-on-scroll" src="https://img.freepik.com/free-vector/cook-background-illustration_1284-9285.jpg?w=1380&t=st=1676365840~exp=1676366440~hmac=3d3a4b9a273ae25c46a31abc6deedc0f743b8d433c564a3e1a1915a5972e5613">
       <section id="chefs">
         <span>Grandpa Joe - specializes in dumplings</span>
-        <img class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/portrait-elderly-chef-dressed-uniform-with-crossed-arms-against-dark-background_613910-17580.jpg?w=1380&t=st=1676364229~exp=1676364829~hmac=dccc16d44eb02ef159db75e5f4e922594a92d3271a41bc19450943bca4b320fa">
+        <img alt="grandpa Joe's photo" class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/portrait-elderly-chef-dressed-uniform-with-crossed-arms-against-dark-background_613910-17580.jpg?w=1380&t=st=1676364229~exp=1676364829~hmac=dccc16d44eb02ef159db75e5f4e922594a92d3271a41bc19450943bca4b320fa">
         <span>Mike - 10 years of experience in vegan cooking</span>
-        <img class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/man-cook-holds-pan-with-vegetables-flying-air_613910-771.jpg?w=1380&t=st=1676364240~exp=1676364840~hmac=d3a5c0509d9640b88667ce3707c1c2a689a09c1e5459c90ca131eef13b27040f">
+        <img alt="Jike's photo" class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/man-cook-holds-pan-with-vegetables-flying-air_613910-771.jpg?w=1380&t=st=1676364240~exp=1676364840~hmac=d3a5c0509d9640b88667ce3707c1c2a689a09c1e5459c90ca131eef13b27040f">
         <span>Sarah - master of Polish cuisine</span>
-        <img class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/female-chef-chopping-vegetables-kitchen_23-2148763134.jpg?w=1380&t=st=1676364218~exp=1676364818~hmac=8494b54350aafd549182434fa7887a48855347e7a4d060019756ed0eed5fc89d">
+        <img alt="Jarah's phot" class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/female-chef-chopping-vegetables-kitchen_23-2148763134.jpg?w=1380&t=st=1676364218~exp=1676364818~hmac=8494b54350aafd549182434fa7887a48855347e7a4d060019756ed0eed5fc89d">
       </section>
-      <img class="show-on-scroll" loading="lazy" src="https://img.freepik.com/premium-photo/text-dream-job-ahead-marking-road-surface_488220-46264.jpg?w=1380">
+      <img alt="future ahead" class="show-on-scroll" loading="lazy" src="https://img.freepik.com/premium-photo/text-dream-job-ahead-marking-road-surface_488220-46264.jpg?w=1380">
       <section id="plans">
         <span>We want to expand our business while keeping it home-like. Sometime next year we will open a new restaurant in Warsaw.</span>
       </section>
-      <img class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/young-happy-waitress-serving-food-guests-restaurant_637285-8962.jpg?t=st=1676059609~exp=1676060209~hmac=796a73cb3e6e74a734d0e981cc21c1013da17c269e4c72d6e847e0660655865d">
+      <img alt="waitress serves food to customers" class="show-on-scroll" loading="lazy" src="https://img.freepik.com/free-photo/young-happy-waitress-serving-food-guests-restaurant_637285-8962.jpg?t=st=1676059609~exp=1676060209~hmac=796a73cb3e6e74a734d0e981cc21c1013da17c269e4c72d6e847e0660655865d">
       <section id="map">
         <span>Visit us at our location:</span>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1076.762198424127!2d19.906304463633614!3d50.06781381311996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b8229a94d6b%3A0xd69d936ad4e89846!2sKapitol%20-%20Student%20Dormitory%20(DS)%2014!5e0!3m2!1sen!2spl!4v1675678012908!5m2!1sen!2spl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </section>
       <section id="contact">
-        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
-        <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
-        <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+        <address>
+          <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
+          <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+          <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+        </address>
       </section>
     </div>
   </body>
