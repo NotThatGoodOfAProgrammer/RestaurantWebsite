@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width"/>
-    <title>MouthwateringMeals</title>
+    <meta name="description" content="Computer Science student's project. Several options to select from. Than u can personalise the dish and at last visit the shopcart.">
+    <title>Mouthwatering Meals</title>
     <link rel="icon" type="image/x-icon" href="https://img.icons8.com/clouds/512/globe--v2.png">
     <link rel="stylesheet" href="restaurantStyle.css">
     <link rel="stylesheet" href="orderingStyle.css">
@@ -12,10 +13,12 @@
   </head>
   <body>
     <nav>
-      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/"><img src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f"></a>
+      <a href="https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/">
+        <img alt="logo" src="https://img.freepik.com/free-vector/detailed-chef-logo-template_52683-64212.jpg?w=826&t=st=1676100364~exp=1676100964~hmac=ad229d146bfcfc25ff999985e4744b26c244092db8723db42cdd76180ac2034f">
+      </a>
       <div id="navbar-container">
         <button class="tab" onclick="document.getElementsByClassName('tab-content')[0].classList.toggle('tab-open')">
-          <img id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png">
+          <img alt="tab icon" id="menu" src="https://img.icons8.com/ios-filled/1x/menu-rounded.png">
         </button>
       </div>
     </nav>
@@ -51,15 +54,15 @@
           <span class="dark-mode-slider"></span>
         </label>
       </div>
-      <div class="contact-box">
+      <address class="tab-contact">
         <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
         <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
         <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
-      </div>
+      </address>
     </div>
     <div class="site-content">
       <section id="dumplings">
-        <span>Dumplings</span>
+        <h1>Dumplings</h1>
         <ul>
           <li>
             <button onclick="showPopUp(this)">
@@ -124,7 +127,7 @@
         </ul>
       </section>
       <section id="square-meal">
-        <span>Square meal</span>
+        <h1>Square meal</h1>
         <ul>
           <li>
             <button onclick="showPopUp(this)">
@@ -189,7 +192,7 @@
         </ul>
       </section>
       <section id="soups">
-        <span>Soups</span>
+        <h1>Soups</h1>
         <ul>
           <li>
             <button onclick="showPopUp(this)">
@@ -224,7 +227,7 @@
         </ul>
       </section>
       <section id="beverage">
-        <span>Beverage</span>
+        <h1>Beverage</h1>
         <ul>
           <li>
             <button onclick="showPopUp(this)">
@@ -289,9 +292,11 @@
         </ul>
       </section>
       <section id="contact">
-        <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
-        <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
-        <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+        <address>
+          <p><a href="https://github.com/NotThatGoodOfAProgrammer" target="_blank">Site author: Armatys Konrad</a></p>
+          <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+          <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+        </address>
       </section>
     </div>
     <div class="presentation">
@@ -299,7 +304,7 @@
         <div class="fluid-row">
           <div class="close-button-container">
             <button>
-              <img class="close" src="https://img.icons8.com/ios-filled/256/delete-sign.png">
+              <img alt="close icon" class="close" src="https://img.icons8.com/ios-filled/256/delete-sign.png">
             </button>
           </div>
         </div>
@@ -534,7 +539,7 @@
               </div>
               <div class="special-instructions">
                 <div class="instruction-container">
-                  <textarea placeholder="Special instructions" maxlength="100"></textarea>
+                  <textarea placeholder="Special instructions" maxlength="500"></textarea>
                 </div>
               </div>
             </div>
@@ -543,11 +548,11 @@
                 <div class="quantity-container">
                   <span>Qty</span>
                   <button type="button" class="not-less" onclick="changeQty(-1)">
-                    <img src="https://img.icons8.com/ios/256/minus.png">
+                    <img alt="decrease icon" src="https://img.icons8.com/ios/256/minus.png">
                   </button>
                   <span class="quantity">1</span>
                   <button type="button" onclick="changeQty(1)">
-                    <img src="https://img.icons8.com/ios/256/add.png">
+                    <img alt="increase icon" src="https://img.icons8.com/ios/256/add.png">
                   </button>
                 </div>
                 <div class="poped-price-container">
