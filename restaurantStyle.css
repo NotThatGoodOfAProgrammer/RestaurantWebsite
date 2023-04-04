@@ -188,7 +188,7 @@ section span {
   font-size: 1.5rem;
 }
 
-.contact-box {
+.tab-contact {
   padding-bottom: 25px;
   font-size: 1rem;
   flex-grow: 1;
@@ -196,15 +196,8 @@ section span {
   flex-direction: column-reverse;
 }
 
-.contact-box p {
-  text-align: center;
-  margin: 10px;
-}
-
-.contact-box p, #contact p {
-  font-size: 1rem;
-  color: darkslategrey;
-  cursor: copy;
+.tab-contact p {
+  margin: 10px 0;
 }
 
 #contact {
@@ -217,7 +210,16 @@ section span {
   box-sizing: border-box;
 }
 
-.contact-box a, #contact a {
+address p {
+  font-size: 1rem;
+  font-style: normal;
+  text-align: center;
+  color: darkslategrey;
+  cursor: copy;
+  margin: 16px 0;
+}
+
+address a {
   color: darkslategrey;
 }
  
@@ -262,7 +264,7 @@ section span {
     top: 0px;
   }
 
-  .contact-box {
+  .tab-contact {
     display: none;
   }
 
