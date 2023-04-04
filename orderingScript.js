@@ -1,221 +1,535 @@
-addEventListener('load', () => {
-  sessionStorage.setItem("prevRadioValue", 0);
-  document.getElementsByClassName("add-to-cart")[0].disabled = true;
-});
+button {
+  cursor: pointer;
+  background-color: inherit;
+  border-width: 0px;
+}
 
+fieldset {
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
 
-function showPopUp(clicked) {
-  const presentation = document.getElementsByClassName("presentation")[0];
-  presentation.style.visibility = "visible";
+.site-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-  const imgToShow = clicked.getElementsByTagName("img")[0].src;
-  const nameToShow = clicked.getElementsByClassName("food-name")[0].innerText;
-  const priceToShow = clicked.getElementsByClassName("price")[0].innerText;
+.site-content span, .site-content p {
+  max-width: 1200px;
+}
 
-  presentation.getElementsByClassName("product-img")[0].src = imgToShow;
-  presentation.getElementsByClassName("poped-food-name")[0].innerText = nameToShow;
-  presentation.getElementsByClassName("poped-price")[0].innerText = priceToShow;
+/* sections */
+section {
+  max-width: 640px;
+  margin: 30px 20px;
+  flex-grow: 1;
+}
 
+section:first-child {
+  margin-top: 80px;
+}
 
-  document.onclick = function(element) {
-    if (element.target.className === "presentation"
-        ||
-        element.target.className === "close"
-        ||
-        element.target.className === "add-to-cart active") {
+section button {
+  padding: 0;
+  width: 100%;
+  border-radius: 15px;
+}
 
-      resetPresentation();
-    };
-  };
+section button:hover, .active:hover, .added-to-cart button:hover {
+  box-shadow: 0 0.5em 0.5em -0.4em;
+  transform: translateY(-0.25em);
+}
+
+h1 {
+  margin: 20px 0 0;
+
+}
+
+/* food box */
+.site-content ul {
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.site-content li {
+  flex-grow: 1;
+  flex-basis: 95%;
+  margin: 10px;
+}
+
+.food-box {
+  height: 150px;
+  max-width: 600px;
+  background-color: var(--aiding-color);
+  display: flex;
+  flex-wrap: nowrap;
+  border-radius: inherit;
+}
+
+li .img-container {
+  border-radius: 0 15px 15px 0;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  flex-shrink: 0;
+  height: inherit;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.food-description {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.food-description span, .price-div {
+  text-align: left;
+  flex-grow: 1;
+  display: flex;
+}
+
+.price-div {
+  flex-wrap: wrap;
+  align-content: end;
+}
+
+.food-name {
+  font-size: 1.3rem;
+}
+
+.price {
+  font-size: 1.5rem;
+}
+
+/* food navbar */
+html {
+  scroll-behavior: smooth;
+  scroll-padding: 175px;
+}
+
+.food-navbar {
+  height: 60px;
+  top: 90px;
+  justify-content: left;
+  flex-wrap: wrap;
+  align-content: center;
+  z-index: 1;
+}
+
+.food-navbar div {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  width: 100%;
+  max-width: 1040px;
+  height: 100%
+}
+
+.food-navbar span {
+  margin: 0px 10px;
+  font-size: 1.25rem;
+}
+
+.food-navbar button:hover {
+  cursor: pointer;
+  color: var(--aiding-color);
+  fill: var(--aiding-color);
+}
+
+/* poped up presentation */
+.presentation {
+  top: 0;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  flex-wrap: nowrap;
+  align-content: center;
+  visibility: hidden;
+  z-index: 3;
+}
+
+.poped-food-name, .multibox-name, .item-price-container, .summary {
+  cursor: default;
+}
+
+.pop-up {
+  width: 400px;
+  max-height: calc(100% - 64px);
+  margin: 32px;
+  background-color: var(--light-bg-color);
+  opacity: 1;
+  border-radius: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.close-button-container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  height: 30px;
+  aspect-ratio: 1 / 1;
+}
+
+.close-button-container button, .close {
+  padding: 0;
+  height: inherit
+}
+
+.close {
+  width: 100%;
+  z-index: 1;
+  position: sticky;
+}
+
+.product-img {
+  width: 100%;
+}
+
+.poped-food-name {
+  display: block;
+  padding: 20px;
+  font-size: 1.5rem;
+  border-bottom: var(--border-style);
+}
+
+/* poped up presentation summary */
+.finalise-order {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--light-bg-color);
+  position: sticky;
+  bottom: 0px;
+  border-top: var(--border-style);
+  padding: 0px 20px 20px;
+}
+
+.finalise-order span {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.summary {
+  flex-grow: 1;
+  margin: 20px 0;
+}
+
+.summary, .quantity-container, .poped-price-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.quantity-container button {
+  padding: 0;
+  margin-inline: 4px;
+}
+
+.not-less img {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.quantity-container span {
+  margin-right: 8px;
+}
+
+.quantity-container .quantity {
+  margin-right: 0;
+}
+
+.poped-price-container{
+  flex-grow: 1;
+  justify-content: end;
+}
+
+.quantity-container img {
+  padding-inline: 5px;
+  height: 24px;
+}
+
+.add-to-cart {
+  cursor: default;
+  flex-basis: 100%;
+  padding: 6px 16px;
+  border-radius: 5px;
+  background-color: rgb(182, 70, 95, 0.7);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1.25px;
+  line-height: 2;
+}
+
+.active {
+  cursor: pointer;
+  background-color: var(--aiding-color);
+  transition: .3s;
+}
+
+/* multiboxes */
+.multiboxes {
+  padding-inline: 20px;
+}
+
+.multibox {
+  padding: 20px 0;
+  border-bottom: var(--border-style);
+}
+
+.multibox-name {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.multibox-title {
+  font-size: 1.3rem;
+}
+
+.special-instructions {
+  padding: 20px 0;
+}
+
+.instruction-container {
+  padding: 15px;
+  height: 100px;
+  border: var(--border-style);
+  background-color: rgb(204, 204, 204);
+  border-radius: 10px;
+}
+
+.instruction-container textarea {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(204, 204, 204);
+  resize: none;
+  border: none;
+}
+
+.instruction-container textarea:focus {
+  outline: 0;
+}
+
+.required-item {
+  flex-grow: 1;
+  display: flex;
+  justify-content: end;
+}
+
+.required {
+  font-size: 0.8rem;
+  padding: 8px;
+  background-color: turquoise;
+  border-radius: 34px;
+}
+
+/*items list*/
+.item-and-price {
+  display: flex;
+  margin: 20px 0;
+}
+
+.item-price-container {
+  flex-grow: 1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: end;
+  align-items: center;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}/* check*/
+
+.item span {
+  font-size: 1.2rem;
+}
+
+/* custom checkbox and radio button */
+.custom-checkbox, .custom-radio {
+  display: flex;
+  position: relative;
+  padding-left: 35px;
+  cursor: pointer;
+  font-size: 22px;
+  user-select: none;
+  height: 24px;
+}
+
+.custom-checkbox input, .custom-radio input {
+  position: absolute;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+
+.checkmark, .radio-dot {
+  position: absolute;
+  top: -1px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--aiding-color);
+  border-radius: 5px;
+}
+
+.radio-dot {
+  border-radius: 50%;
+}
+
+.custom-checkbox input:checked ~ .checkmark {
+  background-color: var(--aiding-color);
+}
+
+.custom-radio input:checked ~ .radio-dot {
+  background-color: inherit;
+}
+
+.checkmark:after, .radio-dot:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-checkbox input:checked ~ .checkmark:after,
+.custom-radio input:checked ~ .radio-dot:after {
+  display: block;
+}
+
+.custom-checkbox .checkmark:after {
+  left: 7px;
+  top: 4px;
+  width: 4px;
+  height: 8px;
+  border: solid lightgrey;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.custom-radio .radio-dot:after {
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--aiding-color);
+}
+
+.disabled label{
+  cursor: default;
+}
+
+.disabled .checkmark, .disabled .radio-dot {
+  border: 2px solid rgb(182, 70, 95, 0.7);
+}
+
+.disabled span {
+  color: rgb(0, 0, 0, 0.7);
+}
+
+/* added to cart notification */
+.added-to-cart {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  position: fixed;
+  top: 160px;
+  right: 25px;
+  width: 300px;
+  height: 125px;
+  background-color: var(--light-bg-color);
+  border-radius: 10px;
+  border: 2px solid rgba(48, 50, 59, 0.5);
+  padding: 10px;
+  transform: translateX(110%);
+  transition: 1.5s cubic-bezier(0.77, 0, 0.175, 1) 0s;
+}
+
+.show-added-to-cart {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.short-description {
+  flex-grow: 1;
+  display: flex;
+}
+
+.short-description img {
+  height: 70px;
+  border-radius: 5px;
+}
+
+.main-info {
+  display: inline-block;
+  padding: 8px 0 8px 16px;
+}
+
+.added-info {
+  font-size: 1.5rem;
+}
+
+.count {
+  margin-right: 5px;
+  color: rgba(0, 0, 0, .5);
+}
+
+.name {
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, .5);
+}
+
+.added-to-cart button {
+  height: 40px;
+  width: 100%;
+  font-size: 1rem;
+  background-color: var(--aiding-color);
+  border-radius: 10px;
+  transition: .3s;
+  pointer-events: none;
+}
+
+.show-added-to-cart button {
+  pointer-events: initial;
 }
 
 
-function resetPresentation() {
-  document.getElementsByClassName("pop-up")[0].scrollTop = 0;
-
-  document.getElementsByClassName("presentation")[0].style.visibility = "hidden";
-
-
-  document.querySelectorAll(".item input").forEach(input => input.checked = false);
-  sessionStorage.setItem("prevRadioValue", 0);
-
-  document.querySelectorAll("input:disabled").forEach(input => {
-    input.disabled = false;
-    input.closest(".item-and-price").classList.remove("disabled");
-  });
-
-
-  const addToCartButton = document.getElementsByClassName("add-to-cart")[0];
-  addToCartButton.disabled = true;
-  addToCartButton.classList.remove("active");
-  addToCartButton.innerText = "COMPLETE REQUIRED INFO";
-
-
-  document.getElementsByClassName("quantity")[0].innerText = 1;
-  
-  const minusButton = document.querySelector(".quantity-container button");
-  minusButton.disabled = true;
-  minusButton.classList.add("not-less");
-}
-
-
-function buttonActivity() {
-  const checkboxes = document.querySelectorAll("input[name=toss-ins]:checked");
-  const addToCartButton = document.getElementsByClassName("add-to-cart")[0];
-
-  if (checkboxes.length > 0) {
-    const radio = document.querySelector("input[name=takeaway]:checked");
-
-    if (radio !== null) {
-      addToCartButton.disabled = false;
-      addToCartButton.classList.add("active");
-      addToCartButton.innerText = "ADD TO CART";
-
-      return;
-    };
-  };
-
-  addToCartButton.disabled = true;
-  addToCartButton.classList.remove("active");
-  addToCartButton.innerText = "COMPLETE REQUIRED INFO";
-}
-
-
-function addPrice (element) {
-  const quantity = Number(document.getElementsByClassName("quantity")[0].innerText);
-  const addPrice = element.closest(".item-and-price").getElementsByClassName("item-price")[0].innerText;
-
-  if (addPrice !== "FREE") {
-    let value = parseFloat(addPrice.slice(2));
-
-    const price = parseFloat((document.querySelector(".poped-price").innerText).slice(1));
-    
-    if (element.parentElement.className === "custom-radio") {
-      prev = sessionStorage.getItem("prevRadioValue");
-
-      sessionStorage.setItem("prevRadioValue", value);
-      value -= prev;
-    }
-
-    const finalPrice = element.checked ? price + value * quantity : price - value * quantity;
-    document.querySelector(".poped-price").innerText = "$" + (finalPrice).toFixed(2);
-
-  } else if (element.parentElement.className === "custom-radio") {
-    const prev = sessionStorage.getItem("prevRadioValue");
-  
-    sessionStorage.setItem("prevRadioValue", 0);
-
-    const priceElement = document.querySelector(".poped-price");
-
-    const finalPrice = parseFloat((priceElement.innerText).slice(1)) - prev * quantity;
-    priceElement.innerText = "$" + (finalPrice).toFixed(2);
-  };
-}
-
-
-function changeQty (value) {
-  const quantity = document.getElementsByClassName("quantity")[0];
-  const minusButton = document.querySelector(".quantity-container button");
-
-  if (value === -1  &&  quantity.innerText === "2") {
-    minusButton.disabled = true;
-    minusButton.classList.add("not-less");
-    
-  } else if (quantity.innerText === "1") {
-    minusButton.disabled = false;
-    minusButton.classList.remove("not-less");
-  };
-
-  const newQty = Number(quantity.innerText) + value;
-  quantity.innerText = newQty;
-
-  const priceElement = document.getElementsByClassName("poped-price")[0];
-  const oldPrice = parseFloat(priceElement.innerText.slice(1));
-  priceElement.innerText = "$" + ((oldPrice /(newQty - value) *newQty).toFixed(2));
-}
-
-
-function addToCart () {
-  const alertElement = document.getElementsByClassName("added-to-cart")[0];
-  alertElement.classList.add("show-added-to-cart");
-
-  const productImg = document.getElementsByClassName("product-img")[0].src;
-  const quantity = document.getElementsByClassName("quantity")[0].innerText;
-  const foodName = document.getElementsByClassName("poped-food-name")[0].innerText;
-
-  document.querySelector(".short-description img").src = productImg;
-  document.getElementsByClassName("count")[0].innerText = quantity + "x";
-  document.getElementsByClassName("name")[0].innerText = foodName;
-
-  document.getElementsByClassName("add-to-cart")[0].disabled = true;
-  
-  document.querySelectorAll("input:disabled").forEach(element => {
-    element.disabled = false;
-    element.closest(".item-and-price").classList.remove("disabled");
-  });
-
-
-  const multipliedPrice = parseFloat((document.querySelector(".poped-price").innerText).slice(1));
-  const price = "$" + (multipliedPrice / quantity).toFixed(2);
-  
-  const selectedRadio = document.querySelector("input[name=takeaway]:checked");
-  const eatIn = selectedRadio.parentElement.getElementsByClassName("option-name")[0].innerText;
-
-  const tossIns = fillWithInputs("toss-ins");
-
-  const dressing = fillWithInputs("dressing");
-
-  const addOns = fillWithInputs("add-ons");
-
-  const text = document.getElementsByTagName("textarea")[0].value;
-
-
-  const exportData = [productImg, quantity, foodName, price, eatIn, tossIns, dressing, addOns, text]
-
-  let dataArray = JSON.parse(localStorage.getItem("order"));
-  if (dataArray === null) {
-    dataArray = [];
+@media (min-width: 920px) {
+  section {
+    width: min(calc(100% - 60px), 1040px);
+    max-width: none;
+    margin-inline: 0;
   }
-  
-  dataArray.push(exportData);
-  localStorage.setItem("order", JSON.stringify(dataArray));
 
-  document.getElementsByTagName("textarea")[0].value = "";
-  
-  setTimeout(() => {alertElement.classList.remove("show-added-to-cart")}, 6000);
-}
+  .food-box {
+    max-width: 500px;
+  }
 
+  .food-navbar {
+    top: 121px;
+    justify-content: space-around;
+  }
 
-function fillWithInputs(name) {
-  let array = [];
-  const inputs = document.querySelectorAll("input[name=" + name + "]:checked");
-  Array.from(inputs).forEach(input => {
-    array.push(input.parentElement.getElementsByClassName("option-name")[0].innerText);
-  })
+  html {
+    scroll-padding: 210px;
+  }
 
-  return array;
-}
+  .site-content li {
+    flex-basis: 45%;
+  }
 
-
-function maxSelected(name) {
-  const tossInsLimit = 3;
-  const dressingLimit = 2;
-
-  const currentLimit = (name === "toss-ins" ? tossInsLimit : dressingLimit);
-
-  const checked = document.querySelectorAll("input[name=" + name + "]:checked");
-  const theRest = document.querySelectorAll("input[name=" + name + "]:not(:checked)");
-
-
-  if (checked.length == currentLimit) {
-    theRest.forEach(element => {
-      element.closest(".item-and-price").classList.add("disabled");
-      element.disabled = true;
-    });
-  } else {
-    theRest.forEach(element => {
-      element.closest(".item-and-price").classList.remove("disabled");
-      element.disabled = false;
-    });
-  };
+  .added-to-cart {
+    top: 200px;
+  }
 }
