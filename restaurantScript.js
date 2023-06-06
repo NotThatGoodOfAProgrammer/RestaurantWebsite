@@ -56,3 +56,13 @@ addEventListener('load', () => {
     section.style.transition = "0.4s";
   });
 });
+
+
+function openTab() {
+  const tabContent = document.getElementsByClassName("tab-content")[0]
+  tabContent.classList.toggle('tab-open');
+  const links = tabContent.getElementsByTagName('a');
+
+  new_index = (links[0].tabIndex + 1) * -1;
+  Array.from(links).forEach(link => link.tabIndex = new_index);
+}
