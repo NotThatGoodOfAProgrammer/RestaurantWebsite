@@ -22,7 +22,7 @@ addEventListener('DOMContentLoaded', () => {
       
       images[i].src = item[0];
       images[i].alt = item[2];
-      quantities[i].innerText = item[1];
+      quantities[i].innerText = item[1] + 'x';
 
       if (item[1] === "1x") {
         button = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
@@ -32,14 +32,14 @@ addEventListener('DOMContentLoaded', () => {
       names[i].innerText = item[2];
       prices[i].innerText = item[3];
 
-      summary += parseFloat(item[3].slice(1)) * Number(item[1].slice(0, -1));
+      summary += parseFloat(item[3].slice(1)) * Number(item[1]);
 
       for (j=0; j<4; j++) {
         choices[4*i + j].innerText = item[4+j];
       };
       instructions[i].innerText = item[8];
     }
-
+    
     document.getElementsByClassName("summed-price")[0].innerText = "$" + summary.toFixed(2);
   } else {
     emptyCart();
@@ -48,6 +48,7 @@ addEventListener('DOMContentLoaded', () => {
 
 
 function emptyCart() {
+  document.getElementsByClassName("summed-price")[0].innerText = "$0.00";
   document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
   document.getElementsByClassName("empty-cart")[0].style.display = "block";
 }
@@ -93,8 +94,8 @@ function orderedQty (value, element) {
   let i = 0;
   while (quantityButtons[i] !== element.parentElement) i++;
 
-  const dishPrice = Number(orderedArray[i][1].slice(0, -1));
-  orderedArray[i][1] = dishPrice + value + "x";
+  const dishNumber = Number(orderedArray[i][1]);
+  orderedArray[i][1] = dishNumber + value;
   localStorage.setItem("order", JSON.stringify(orderedArray));
 
 
@@ -102,7 +103,7 @@ function orderedQty (value, element) {
 
   summary = document.getElementsByClassName("summed-price")[0];
   const currPrice = parseFloat(summary.innerText.slice(1));
-  summary.innerText = "$" + (currPrice + value*price).toFixed(2);
+  summary.innerText = "$" + (Math.max(currPrice + value*price, 0)).toFixed(2);
 }
 
 
@@ -151,15 +152,18 @@ function priceIncludingCode(item) {
 
 
 function verifyCode (element) {
-  const inputElement = element.closest(".submitions").querySelector("input[type=text]");
+  const inputElement = element.closest(".discounts").querySelector("input[type=text]");
   const inputedText = inputElement.value.toLowerCase();
   const codes = JSON.parse(localStorage.getItem("codes"));
   
   codes.forEach( codeArray => {
     if (codeArray[0] === inputedText) {
-      const submitions = document.getElementsByClassName("submitions");
-      submitions[0].style.display = "none";
-      submitions[1].style.display = "none";
+      const inputs = document.querySelectorAll(".promo input[type=text");
+      inputs.forEach(input => input.style.display = "none");
+
+      const buttons = document.querySelectorAll(".discounts button");
+      buttons.forEach(button => button.style.display = "none");
+
 
       const promo = document.getElementsByClassName("promo");
       promo[0].innerText += codeArray[1];
@@ -178,7 +182,7 @@ function verifyCode (element) {
       }
     }
   });
-  element.closest(".submitions").querySelector("input[type=text]").value = "";
+  inputElement.value = "";
 }
 
 
