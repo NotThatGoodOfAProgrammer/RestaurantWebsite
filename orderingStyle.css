@@ -44,7 +44,7 @@ section button:hover, .active:hover, .added-to-cart button:hover {
 
 h1 {
   margin: 20px 0 0;
-
+  font-weight: 400;
 }
 
 /* food box */
@@ -99,12 +99,14 @@ li .img-container {
   align-content: end;
 }
 
-.food-name {
-  font-size: 1.3rem;
+.food-description .food-name {
+  padding: 10px 0 0 10px;
+  font-size: 1.2rem;
 }
 
-.price {
-  font-size: 1.5rem;
+.food-description .price {
+  padding: 0 0 10px 10px;
+  font-size: 1.4rem;
 }
 
 /* food navbar */
@@ -210,12 +212,11 @@ html {
   position: sticky;
   bottom: 0px;
   border-top: var(--border-style);
-  padding: 0px 20px 20px;
+  padding: 0px 15px 20px 20px;
 }
 
 .finalise-order span {
   font-size: 1.25rem;
-  font-weight: 500;
 }
 
 .summary {
@@ -264,7 +265,7 @@ html {
   border-radius: 5px;
   background-color: rgb(182, 70, 95, 0.7);
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1.25px;
   line-height: 2;
 }
@@ -277,7 +278,7 @@ html {
 
 /* multiboxes */
 .multiboxes {
-  padding-inline: 20px;
+  padding-inline: 20px 15px;
 }
 
 .multibox {
@@ -336,11 +337,13 @@ html {
 /*items list*/
 .item-and-price {
   display: flex;
+  justify-content: space-between;
   margin: 20px 0;
 }
 
 .item-price-container {
-  flex-grow: 1;
+  width: 50px;
+  flex-shrink: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: end;
@@ -445,8 +448,8 @@ html {
   opacity: 0;
   position: fixed;
   top: 160px;
-  right: 25px;
-  width: 300px;
+  right: min(25px, calc(100vw - 320px));
+  width: 296px;
   height: 125px;
   background-color: var(--light-bg-color);
   border-radius: 10px;
@@ -527,6 +530,10 @@ html {
 
   .site-content li {
     flex-basis: 45%;
+  }
+
+  .required {
+    width: 80px;
   }
 
   .added-to-cart {
