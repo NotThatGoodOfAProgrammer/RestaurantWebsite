@@ -5,6 +5,10 @@
   --border-style: 1px solid rgba(48, 50, 59, 0.13);
 }
 
+html * {
+  font-family: 'Libre Baskerville', serif;
+}
+
 body {
   word-break: break-word;
   visibility: hidden;
@@ -91,10 +95,10 @@ li {
 .tab-content {
   position: fixed;
   display: flex;
-  height: calc(100% - 150px);
+  height: calc(100% - 140px);
   width: 100%;
-  padding-top: 60px;
-  font-size: 1.7rem;
+  padding-top: 50px;
+  font-size: 1.3rem;
   transform: translateY(-100%);
   transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1) 0s;
   background-color: inherit;
@@ -185,12 +189,12 @@ section {
 }
 
 section span {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 }
 
 .tab-contact {
-  padding-bottom: 25px;
-  font-size: 1rem;
+  padding-bottom: 15px;
+  font-size: 0.9rem;
   flex-grow: 1;
   display: flex;
   flex-direction: column-reverse;
@@ -211,7 +215,7 @@ section span {
 }
 
 address p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: normal;
   text-align: center;
   color: darkslategrey;
