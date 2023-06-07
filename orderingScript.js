@@ -85,7 +85,7 @@ function addPrice (element) {
   const quantity = Number(document.getElementsByClassName("quantity")[0].innerText);
   const addPrice = element.closest(".item-and-price").getElementsByClassName("item-price")[0].innerText;
 
-  if (addPrice !== "FREE") {
+  if (addPrice === "FREE") {
     let value = parseFloat(addPrice.slice(2));
 
     const price = parseFloat((document.querySelector(".poped-price").innerText).slice(1));
@@ -100,6 +100,7 @@ function addPrice (element) {
     const finalPrice = element.checked ? price + value * quantity : price - value * quantity;
     document.querySelector(".poped-price").innerText = "$" + (finalPrice).toFixed(2);
 
+    
   } else if (element.parentElement.className === "custom-radio") {
     const prev = sessionStorage.getItem("prevRadioValue");
   
