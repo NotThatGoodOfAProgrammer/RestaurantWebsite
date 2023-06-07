@@ -10,8 +10,8 @@
   margin: 10px;
 }
 
-/* comment submition */
-#new-comment {
+/* review submition */
+#new-review {
   box-sizing: border-box;
   padding: 20px;
 }
@@ -107,8 +107,8 @@
   outline: 0;
 }
 
-/* comments */
-.comment-container {
+/* reviews */
+.review-container {
   padding-bottom: 5px;
   border-radius: 34px;
   border: var(--border-style);
@@ -122,13 +122,13 @@
   border-bottom: var(--border-style);
 }
 
-.comment {
+.review {
   padding: 5px;
 }
 
-.comment span{
+.review span{
   padding: 0;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 
 .show-more {
