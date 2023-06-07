@@ -1,6 +1,39 @@
 let summary = 0;
 
 
+function loadDishes(importedData) {
+  const names = document.getElementsByClassName("food-name");
+  const choices = document.getElementsByClassName("inputed-info");
+  const images = document.querySelectorAll(".img-container img");
+  const quantities = document.getElementsByClassName("ordered-quantity");
+  const prices = document.getElementsByClassName("price");
+  const instructions = document.getElementsByClassName("inputed-text")
+
+  for (i = 0; i<importedData.length; i++) {
+    const item = importedData[i];
+    
+    images[i].src = item[0];
+    images[i].alt = item[2];
+    quantities[i].innerText = item[1] + 'x';
+
+    if (item[1] === "1x") {
+      const button = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
+      button.disabled = true;
+      button.classList.add("not-less");
+    }
+    names[i].innerText = item[2];
+    prices[i].innerText = item[3];
+
+    summary += parseFloat(item[3].slice(1)) * Number(item[1]);
+
+    for (j=0; j<4; j++) {
+      choices[4*i + j].innerText = item[4+j];
+    };
+    instructions[i].innerText = item[8];
+  }
+}
+
+
 addEventListener('DOMContentLoaded', () => {
   localStorage.setItem("codes", JSON.stringify([["code", " -10%"], ["easter egg", " -20$"]]));
   
@@ -12,44 +45,17 @@ addEventListener('DOMContentLoaded', () => {
       document.getElementById("items").getElementsByTagName("ul")[0].appendChild(clone);
     }
 
-    const names = document.getElementsByClassName("food-name");
-    const choices = document.getElementsByClassName("inputed-info");
-    const images = document.querySelectorAll(".img-container img");
-    const quantities = document.getElementsByClassName("ordered-quantity");
-    const prices = document.getElementsByClassName("price");
-    const instructions = document.getElementsByClassName("inputed-text")
 
-    for (i = 0; i<importedData.length; i++) {
-      const item = importedData[i];
-      
-      images[i].src = item[0];
-      images[i].alt = item[2];
-      quantities[i].innerText = item[1] + 'x';
+    loadDishes(importedData);
 
-      if (item[1] === "1x") {
-        button = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
-        button.disabled = true;
-        button.classList.add("not-less");
-      }
-      names[i].innerText = item[2];
-      prices[i].innerText = item[3];
-
-      summary += parseFloat(item[3].slice(1)) * Number(item[1]);
-
-      for (j=0; j<4; j++) {
-        choices[4*i + j].innerText = item[4+j];
-      };
-      instructions[i].innerText = item[8];
-    }
-    
     document.getElementsByClassName("summed-price")[0].innerText = "$" + summary.toFixed(2);
   } else {
-    emptyCart();
+    cartIsEmpty();
   }
 });
 
 
-function emptyCart() {
+function cartIsEmpty() {
   document.getElementsByClassName("summed-price")[0].innerText = "$0.00";
   document.getElementById("items").getElementsByTagName("ul")[0].style.display = "none";
   document.getElementsByClassName("empty-cart")[0].style.display = "block";
@@ -134,7 +140,7 @@ function trashItem(element) {
   element.closest("li").remove();
 
   if (document.querySelector("#items li") === null) {
-    emptyCart();
+    cartIsEmpty();
   }
 }
 
