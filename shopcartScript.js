@@ -1,3 +1,6 @@
+let summary = 0;
+
+
 addEventListener('DOMContentLoaded', () => {
   localStorage.setItem("codes", JSON.stringify([["code", " -10%"], ["easter egg", " -20$"]]));
   
@@ -16,7 +19,6 @@ addEventListener('DOMContentLoaded', () => {
     const prices = document.getElementsByClassName("price");
     const instructions = document.getElementsByClassName("inputed-text")
 
-    let summary = 0;
     for (i = 0; i<importedData.length; i++) {
       const item = importedData[i];
       
@@ -78,8 +80,7 @@ function orderedQty (value, element) {
     element.classList.add("not-less");
     
   } else if (quantityElement.innerText === "1x") {
-    minusButton = element.nextElementSibling;
-
+    const minusButton = element.nextElementSibling;
     minusButton.disabled = false;
     minusButton.classList.remove("not-less");
   };
@@ -94,41 +95,43 @@ function orderedQty (value, element) {
   let i = 0;
   while (quantityButtons[i] !== element.parentElement) i++;
 
-  const dishNumber = Number(orderedArray[i][1]);
-  orderedArray[i][1] = dishNumber + value;
+  const dishCounter = Number(orderedArray[i][1]);
+  orderedArray[i][1] = dishCounter + value;
   localStorage.setItem("order", JSON.stringify(orderedArray));
 
 
-  price = priceIncludingCode(element);
+  const priceElement = element.closest(".money-summary").getElementsByClassName("price")[0];
+  let price = parseFloat(priceElement.innerText.slice(1));
 
-  summary = document.getElementsByClassName("summed-price")[0];
-  const currPrice = parseFloat(summary.innerText.slice(1));
-  summary.innerText = "$" + (Math.max(currPrice + value*price, 0)).toFixed(2);
+  summary += value*price;
+  price = priceIncludingCode(summary);
+  document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(price, 0)).toFixed(2);
 }
 
 
-function trashItem(item) {
-  price = priceIncludingCode(item);
-  
-
+function trashItem(element) {
   let orderedArray = JSON.parse(localStorage.getItem("order"));
   const trashButtons = document.getElementsByClassName("trash");
 
   let i = 0;
-  while (trashButtons[i] !== item) i++;
+  while (trashButtons[i] !== element) i++;
   
   
   orderedArray.splice(i, 1);
   
   localStorage.setItem("order", JSON.stringify(orderedArray));
-  
-  const quantityElement = item.closest(".money-summary").getElementsByClassName("ordered-quantity")[0];
-  const quantity = Number(quantityElement.innerText.slice(0, -1));
-  const summary = document.getElementsByClassName("summed-price")[0];
-  const priceWithCode = parseFloat(summary.innerText.slice(1)) - price * quantity
-  summary.innerText = "$" + Math.max((priceWithCode).toFixed(2), 0);
 
-  item.closest("li").remove();
+
+  const priceElement = element.closest(".money-summary").getElementsByClassName("price")[0];
+  let price = parseFloat(priceElement.innerText.slice(1));
+
+  const quantityElement = element.closest(".money-summary").getElementsByClassName("ordered-quantity")[0];
+  const quantity = Number(quantityElement.innerText.slice(0, -1));
+
+  summary -= price * quantity;
+  document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(priceIncludingCode(summary), 0)).toFixed(2);
+
+  element.closest("li").remove();
 
   if (document.querySelector("#items li") === null) {
     emptyCart();
@@ -136,15 +139,14 @@ function trashItem(item) {
 }
 
 
-function priceIncludingCode(item) {
-  const priceElement = item.closest(".money-summary").getElementsByClassName("price")[0];
-  let price = parseFloat(priceElement.innerText.slice(1));
-
+function priceIncludingCode(price) {
   const promo = document.getElementsByClassName("promo")[0].innerText;
+  const numberedPrice = promo.slice(promo.indexOf("-"), -1);
 
   if (promo.slice(-1) === "%"){
-    const numberedPrice = promo.slice(promo.indexOf("-"), -1);
     price *= (100 + parseFloat(numberedPrice))/100;
+  } else if (promo.slice(-1) === "$") {
+    price -= parseFloat(numberedPrice);
   }
 
   return price;
@@ -170,16 +172,8 @@ function verifyCode (element) {
       promo[1].innerText += codeArray[1];
 
 
-      const summaryElement = document.getElementsByClassName("summed-price")[0];
-      const summary = parseFloat(summaryElement.innerText.slice(1))
 
-      if (codeArray[1].slice(-1) === "%") {
-        const percentageToPay = (100 + parseFloat(codeArray[1].slice(1, -1)))/100;
-        summaryElement.innerText = "$" + (summary * percentageToPay).toFixed(2);
-      } else if (codeArray[1].slice(-1) === "$") {
-        const moneyOff = summary + parseFloat(codeArray[1].slice(1, -1));
-        summaryElement.innerText = "$" + (moneyOff).toFixed(2);
-      }
+      document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(priceIncludingCode(summary), 0)).toFixed(2);
     }
   });
   inputElement.value = "";
