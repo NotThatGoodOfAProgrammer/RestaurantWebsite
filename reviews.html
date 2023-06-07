@@ -6,6 +6,9 @@
     <meta name="description" content="Computer Science student's project. Focused more on text and fonts.">
     <title>Mouthwatering Meals</title>
     <link rel="icon" type="image/x-icon" href="https://img.icons8.com/clouds/512/globe--v2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="restaurantStyle.css">
     <link rel="stylesheet" href="reviewsStyle.css">
     <script src="reviewsScript.js"></script>
@@ -53,14 +56,14 @@
       </address>
     </div>
     <div class="site-content">
-      <section id="new-comment">
+      <section id="new-review">
         <div>
           <button class="submit-button" onclick="finaliseComment(this)" disabled>
-            <span>Submit comment</span>
+            <span>Submit review</span>
           </button>
           <div class="fluid-row">
             <div class="confirmation">
-              <span>If you want to submit your comment please enter your name below:</span>
+              <span>If you want to submit your review please enter your name below:</span>
               <div>
                 <input class="input-name" type="text" placeholder="Enter your name" maxlength="30">
                 <button onclick="submitComment()">
@@ -74,14 +77,14 @@
           </div>
         </div>
       </section>
-      <section id="comments">
+      <section id="reviews">
         <ul>
           <li>
-            <div class="comment-container">
+            <div class="review-container">
               <div class="name-container">
                 <span class="name">Placeholder</span>
               </div>
-              <div class="comment">
+              <div class="review">
                 <span>Placeholder</span
                 ><span class="more">Placeholder</span>
                 <button class="show-more" onclick="showMore(this)"><em>... show more</em></button>
