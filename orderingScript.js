@@ -1,6 +1,18 @@
 addEventListener('load', () => {
   sessionStorage.setItem("prevRadioValue", 0);
   document.getElementsByClassName("add-to-cart")[0].disabled = true;
+
+
+  let sections = document.querySelectorAll("section ul");
+  sections.forEach(section => {
+    section.addEventListener('click', (event) => {
+      const currSection = event.target.closest("li");;
+
+      if (currSection) {
+        showPopUp(currSection.getElementsByTagName("button")[0]);
+      }
+    })
+  })
 });
 
 
