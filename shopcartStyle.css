@@ -31,6 +31,10 @@ section {
   margin: 10px;
 }
 
+#summary {
+  font-size: 1.3rem;
+}
+
 /* user personalization */
 .food-summary {
   background-color: var(--aiding-color);
@@ -229,10 +233,6 @@ li .img-container {
 .discounts {
   border-bottom: none;
   padding: 8px 16px 16px;
-}
-
-.discounts label {
-  font-size: 1.3rem;
 }
 
 .discounts input {
