@@ -152,7 +152,7 @@ function priceIncludingCode(price) {
   if (promo.slice(-1) === "%"){
     price *= (100 + parseFloat(numberedPrice))/100;
   } else if (promo.slice(-1) === "$") {
-    price -= parseFloat(numberedPrice);
+    price += parseFloat(numberedPrice);
   }
 
   return price;
