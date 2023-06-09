@@ -55,11 +55,19 @@ addEventListener('load', () => {
   Array.from(document.getElementsByTagName("section")).forEach(section => {
     section.style.transition = "0.4s";
   });
+
+
+  if (window.matchMedia("min-width: 920px")) {
+    const tabContent = document.getElementsByClassName("tab-content")[0];
+    const links = tabContent.getElementsByTagName('a');
+  
+    Array.from(links).forEach(link => link.tabIndex = 0);
+  } 
 });
 
 
 function openTab() {
-  const tabContent = document.getElementsByClassName("tab-content")[0]
+  const tabContent = document.getElementsByClassName("tab-content")[0];
   tabContent.classList.toggle('tab-open');
   const links = tabContent.getElementsByTagName('a');
 
