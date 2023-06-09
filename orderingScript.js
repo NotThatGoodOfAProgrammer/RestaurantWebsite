@@ -85,8 +85,8 @@ function addPrice (element) {
   const quantity = Number(document.getElementsByClassName("quantity")[0].innerText);
   const addPrice = element.closest(".item-and-price").getElementsByClassName("item-price")[0].innerText;
 
-  if (addPrice === "FREE") {
-    let value = parseFloat(addPrice.slice(2));
+  if (addPrice !== "FREE") {
+    let value = parseFloat(addPrice.slice(1));
 
     const price = parseFloat((document.querySelector(".poped-price").innerText).slice(1));
     
