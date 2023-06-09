@@ -1,0 +1,34 @@
+#contact {
+  margin-top: 30px;
+}
+
+.site-content {
+  height: calc(100vh - 90px);
+  display: flex;
+  flex-direction: column;
+}
+
+#animation-section {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 60px);
+  padding: 10px;
+}
+
+#animation-section a {
+  color:rgb(0, 0, 0);
+}
+
+#animation-frame {
+  flex-grow: 1;
+  background-color: whitesmoke;
+  border: 5px solid rgb(0, 0, 0);
+  margin: 10px;
+}
+
+@media(min-width: 920px) {
+  .site-content {
+    height: calc(100vh - 130px);
+  }
+}
