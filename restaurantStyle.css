@@ -262,6 +262,7 @@ address a {
     height: 120px;
     width: 750px;
     padding-top: 0px;
+    font-size: 1.5rem;
   }
 
   .tab-open {
