@@ -1,5 +1,5 @@
-#contact {
-  margin-top: 30px;
+:root {
+  --animation-border: solid rgb(0, 0, 0);
 }
 
 .site-content {
@@ -25,22 +25,25 @@
   flex-grow: 1;
   position: relative;
   background-color: whitesmoke;
-  border: 5px solid rgb(0, 0, 0);
+  border: 5px var(--animation-border);
   margin: 10px;
   overflow: hidden;
 }
 
+#contact {
+  margin-top: 30px;
+}
+
 /* cup */
-.main-cup {
+.cup-body {
   background-color: blanchedalmond;
   position: absolute;
   left: 18px;
   bottom: 5px;
   width: 90px;
-  height: 60px;
-  border: 3px solid rgb(0, 0, 0);
+  aspect-ratio: 3 / 2;
+  border: 3px var(--animation-border);
   border-radius: 0 0 45px 45px;
-  z-index: 0;
 }
 
 .cup-handle {
@@ -49,9 +52,8 @@
   bottom: 45px;
   width: 15px;
   aspect-ratio: 1 / 1;
-  border: 3px solid rgb(0, 0, 0);
+  border: 3px var(--animation-border);
   border-radius: 0 8px 15px 0;
-  z-index: 0;
 }
 
 .teapot {
@@ -60,8 +62,8 @@
   left: 13px;
   bottom: 0px;
   width: 100px;
-  height: 8px;
-  border: 3px solid rgb(0, 0, 0);
+  aspect-ratio: 25 / 2;
+  border: 3px var(--animation-border);
   border-radius: 0 0 20px 20px;
 }
 
@@ -70,11 +72,10 @@
   position: absolute;
   left: 18px;
   bottom: 40px;
-  height: 100px;
+  width: 100px;
   aspect-ratio: 1 / 1;
   border-radius: 50%;
   background-color: rgb(160, 170, 161);
-  z-index: 0;
   opacity: 0;
 }
 
@@ -108,6 +109,7 @@
   0% {
     transform: translateY(0) translateX(0) scale(0.25); opacity: 0.2;
   }
+
   100% {
     transform: translateY(-100px) translateX(10px) scale(1); opacity: 0;
   }
@@ -119,8 +121,8 @@
   right: 20px;
   bottom: -25px;
   width: 54px;
-  height: 108px;
-  border: 3px solid rgb(0, 0, 0);
+  aspect-ratio: 1 / 2;
+  border: 3px var(--animation-border);
   transform: perspective(195px) rotateX(-45deg);
   animation: drinking 10s linear infinite;
 }
@@ -141,7 +143,7 @@
   bottom: 88px;
   height: 75px;
   width: 9px;
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px var(--animation-border);
   transform: rotate(70deg);
   animation: drinking-top-straw 10s linear infinite;
 }
@@ -166,7 +168,7 @@
   bottom: -2px;
   height: 120px;
   width: 9px;
-  border: 2px solid rgb(0, 0, 0);
+  border: 2px var(--animation-border);
   transform: rotate(20deg);
   animation: drinking-bottom-straw 10s linear infinite;
 }
@@ -193,18 +195,13 @@
 }
 
 @keyframes point-up {
-  0.01%, 70%, 80% {
+  0.01%, 70%, 80%, 90% {
     transform: translateY(0);
     opacity: 1;
   }
 
   75% {
     transform: translateY(-5%);
-  }
-
-  90% {
-    transform: translateY(0);
-    opacity: 1;
   }
 
   100% {
@@ -220,7 +217,7 @@
   animation: top-arrow-movement 10s infinite;
 }
 
-@keyframes top-arrow-movement { /*70%*/
+@keyframes top-arrow-movement {
   0.01%, 45% {
     clip-path: polygon(50% 100%, 50% 100%, 50% 100%);
   }
@@ -263,11 +260,10 @@
   }
 
   /* cup */
-  .main-cup {
+  .cup-body {
     left: 60px;
     bottom: 15px;
     width: 300px;
-    height: 200px;
     border-radius: 0 0 150px 150px;
   }
   
@@ -280,9 +276,7 @@
   
   .teapot {
     left: 43px;
-    bottom: 0px;
     width: 333px;
-    height: 27px;
     border-radius: 0 0 67px 67px;
   }
   
@@ -290,7 +284,7 @@
   .steam {
     left: 60px;
     bottom: 133px;
-    height: 333px;
+    width: 333px;
   }
 
   @keyframes steam1 {
@@ -317,7 +311,6 @@
     right: 66px;
     bottom: -75px;
     width: 180px;
-    height: 360px;
     transform: perspective(650px) rotateX(-45deg);
   }
 
