@@ -16,7 +16,7 @@ function loadDishes(importedData) {
     images[i].alt = item[2];
     quantities[i].innerText = item[1] + 'x';
 
-    if (item[1] === "1x") {
+    if (item[1] === "1") {
       const button = quantities[i].closest(".price-summary").getElementsByTagName("button")[1];
       button.disabled = true;
       button.classList.add("not-less");
