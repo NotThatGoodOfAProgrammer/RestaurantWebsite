@@ -17,7 +17,7 @@ Animations also are something to be admired due to amount of minor details in wh
 7. CSS only animation
 
 ## Usability:
-Othar than finalizing payment and download of the menu being self-promotion and not matching their description everything else should work as expected.
+Othar than finalizing payment and "download" of the menu being self-promotion and not matching their description everything else should work as expected.
 All data is being stored as Local Storage so if you want to get rid of it [here](https://www.leadshook.com/help/how-to-clear-local-storage-in-google-chrome-browser/) is a quick tutorial.
 
 FYI Promo codes are:
