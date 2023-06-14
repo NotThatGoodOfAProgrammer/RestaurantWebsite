@@ -25,7 +25,7 @@ addEventListener('DOMContentLoaded', () => {
     Array.from(elementsToShow).forEach(function (element)
     {
       if (isElementInViewport(element)) {
-        element.classList.add("is-visible");
+        element.classList.add("visible");
       };
     });
     scroll(loop);
