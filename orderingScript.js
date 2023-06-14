@@ -1,6 +1,6 @@
 addEventListener('load', () => {
   sessionStorage.setItem("prevRadioValue", 0);
-  document.getElementsByClassName("add-to-cart")[0].disabled = true;
+  document.getElementsByClassName("add-to-cart-button")[0].disabled = true;
 
 
   let sections = document.querySelectorAll("section ul");
@@ -9,46 +9,46 @@ addEventListener('load', () => {
       const currSection = event.target.closest("li");;
 
       if (currSection) {
-        showPopUp(currSection.getElementsByTagName("button")[0]);
+        showPersonalizationScreen(currSection.getElementsByTagName("button")[0]);
       }
     })
   })
 });
 
 
-function showPopUp(clicked) {
-  const presentation = document.getElementsByClassName("presentation")[0];
-  presentation.style.visibility = "visible";
+function showPersonalizationScreen(clicked) {
+  const personalizationScreen = document.getElementsByClassName("personalization-screen")[0];
+  personalizationScreen.style.visibility = "visible";
 
   const imgToShow = clicked.getElementsByTagName("img")[0].src;
   const nameToShow = clicked.getElementsByClassName("food-name")[0].innerText;
   const priceToShow = clicked.getElementsByClassName("price")[0].innerText;
 
-  presentation.getElementsByClassName("product-img")[0].src = imgToShow;
-  presentation.getElementsByClassName("poped-food-name")[0].innerText = nameToShow;
-  presentation.getElementsByClassName("poped-price")[0].innerText = priceToShow;
+  personalizationScreen.getElementsByClassName("product-img")[0].src = imgToShow;
+  personalizationScreen.getElementsByClassName("picked-food-name")[0].innerText = nameToShow;
+  personalizationScreen.getElementsByClassName("personalized-price")[0].innerText = priceToShow;
 
 
   document.onclick = function(element) {
-    if (element.target.className === "presentation"
+    if (element.target.className === "personalization-screen"
         ||
         element.target.className === "close"
         ||
-        element.target.className === "add-to-cart active") {
+        element.target.className === "add-to-cart-button active") {
 
-      resetPresentation();
+      resetPersonalizationChoices();
     };
   };
 }
 
 
-function resetPresentation() {
-  document.getElementsByClassName("pop-up")[0].scrollTop = 0;
+function resetPersonalizationChoices() {
+  document.getElementsByClassName("personalization")[0].scrollTop = 0;
 
-  document.getElementsByClassName("presentation")[0].style.visibility = "hidden";
+  document.getElementsByClassName("personalization-screen")[0].style.visibility = "hidden";
 
 
-  document.querySelectorAll(".item input").forEach(input => input.checked = false);
+  document.querySelectorAll(".item input:checked").forEach(input => input.checked = false);
   sessionStorage.setItem("prevRadioValue", 0);
 
   document.querySelectorAll("input:disabled").forEach(input => {
@@ -57,7 +57,7 @@ function resetPresentation() {
   });
 
 
-  const addToCartButton = document.getElementsByClassName("add-to-cart")[0];
+  const addToCartButton = document.getElementsByClassName("add-to-cart-button")[0];
   addToCartButton.disabled = true;
   addToCartButton.classList.remove("active");
   addToCartButton.innerText = "COMPLETE REQUIRED INFO";
@@ -73,60 +73,55 @@ function resetPresentation() {
 
 function buttonActivity() {
   const checkboxes = document.querySelectorAll("input[name=toss-ins]:checked");
-  const addToCartButton = document.getElementsByClassName("add-to-cart")[0];
+  const addToCartButton = document.getElementsByClassName("add-to-cart-button")[0];
 
-  if (checkboxes.length > 0) {
-    const radio = document.querySelector("input[name=takeaway]:checked");
-
-    if (radio !== null) {
+  if (checkboxes.length > 0  &&
+    document.querySelector("input[name=takeaway]:checked") !== null) {
       addToCartButton.disabled = false;
       addToCartButton.classList.add("active");
       addToCartButton.innerText = "ADD TO CART";
-
-      return;
-    };
-  };
-
-  addToCartButton.disabled = true;
-  addToCartButton.classList.remove("active");
-  addToCartButton.innerText = "COMPLETE REQUIRED INFO";
+  } else {
+    addToCartButton.disabled = true;
+    addToCartButton.classList.remove("active");
+    addToCartButton.innerText = "COMPLETE REQUIRED INFO";
+  }
 }
 
 
-function addPrice (element) {
+function addPrice(element) {
   const quantity = Number(document.getElementsByClassName("quantity")[0].innerText);
-  const addPrice = element.closest(".item-and-price").getElementsByClassName("item-price")[0].innerText;
+  let priceToAdd = element.closest(".item-and-price").getElementsByClassName("item-price")[0].innerText;
 
-  if (addPrice !== "FREE") {
-    let value = parseFloat(addPrice.slice(1));
+  if (priceToAdd !== "FREE") {
+    priceToAdd = parseFloat(priceToAdd.slice(1));
 
-    const price = parseFloat((document.querySelector(".poped-price").innerText).slice(1));
+    const currPrice = parseFloat((document.querySelector(".personalized-price").innerText).slice(1));
     
     if (element.parentElement.className === "custom-radio") {
-      prev = sessionStorage.getItem("prevRadioValue");
+      const prevPrice = sessionStorage.getItem("prevRadioValue");
 
-      sessionStorage.setItem("prevRadioValue", value);
-      value -= prev;
+      sessionStorage.setItem("prevRadioValue", priceToAdd);
+      priceToAdd -= prevPrice;
     }
 
-    const finalPrice = element.checked ? price + value * quantity : price - value * quantity;
-    document.querySelector(".poped-price").innerText = "$" + (finalPrice).toFixed(2);
+    const finalPrice = element.checked ? currPrice + priceToAdd * quantity : currPrice - priceToAdd * quantity;
+    document.querySelector(".personalized-price").innerText = "$" + (finalPrice).toFixed(2);
 
     
   } else if (element.parentElement.className === "custom-radio") {
-    const prev = sessionStorage.getItem("prevRadioValue");
+    const prevPrice = sessionStorage.getItem("prevRadioValue");
   
     sessionStorage.setItem("prevRadioValue", 0);
 
-    const priceElement = document.querySelector(".poped-price");
+    const priceElement = document.querySelector(".personalized-price");
 
-    const finalPrice = parseFloat((priceElement.innerText).slice(1)) - prev * quantity;
+    const finalPrice = parseFloat((priceElement.innerText).slice(1)) - prevPrice * quantity;
     priceElement.innerText = "$" + (finalPrice).toFixed(2);
   };
 }
 
 
-function changeQty (value) {
+function changeQty(value) {
   const quantity = document.getElementsByClassName("quantity")[0];
   const minusButton = document.querySelector(".quantity-container button");
 
@@ -139,28 +134,28 @@ function changeQty (value) {
     minusButton.classList.remove("not-less");
   };
 
-  const newQty = Number(quantity.innerText) + value;
-  quantity.innerText = newQty;
+  const currQuantity = Number(quantity.innerText);
+  quantity.innerText = currQuantity + value;
 
-  const priceElement = document.getElementsByClassName("poped-price")[0];
+  const priceElement = document.getElementsByClassName("personalized-price")[0];
   const oldPrice = parseFloat(priceElement.innerText.slice(1));
-  priceElement.innerText = "$" + ((oldPrice /(newQty - value) *newQty).toFixed(2));
+  priceElement.innerText = "$" + ((oldPrice /currQuantity *(currQuantity + value)).toFixed(2));
 }
 
 
-function addToCart () {
+function addToCart() {
   const alertElement = document.getElementsByClassName("added-to-cart")[0];
   alertElement.classList.add("show-added-to-cart");
 
   const productImg = document.getElementsByClassName("product-img")[0].src;
   const quantity = document.getElementsByClassName("quantity")[0].innerText;
-  const foodName = document.getElementsByClassName("poped-food-name")[0].innerText;
+  const foodName = document.getElementsByClassName("picked-food-name")[0].innerText;
 
   document.querySelector(".short-description img").src = productImg;
   document.getElementsByClassName("count")[0].innerText = quantity + "x";
   document.getElementsByClassName("name")[0].innerText = foodName;
 
-  document.getElementsByClassName("add-to-cart")[0].disabled = true;
+  document.getElementsByClassName("add-to-cart-button")[0].disabled = true;
   
   document.querySelectorAll("input:disabled").forEach(element => {
     element.disabled = false;
@@ -168,7 +163,7 @@ function addToCart () {
   });
 
 
-  const multipliedPrice = parseFloat((document.querySelector(".poped-price").innerText).slice(1));
+  const multipliedPrice = parseFloat((document.querySelector(".personalized-price").innerText).slice(1));
   const price = "$" + (multipliedPrice / quantity).toFixed(2);
   
   const selectedRadio = document.querySelector("input[name=takeaway]:checked");
