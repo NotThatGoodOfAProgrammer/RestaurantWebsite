@@ -1,4 +1,4 @@
-function changeMode () {
+function changeMode() {
   const theme = document.querySelector(".dark-mode-switch input").checked ? "dark" : "light";
   localStorage.setItem("theme", theme);
 
@@ -9,11 +9,11 @@ function changeMode () {
   document.body.classList.toggle("dark");
 
   try {
-    Array.from(document.getElementsByClassName("required")).forEach(section => {
-      section.classList.toggle("dark-mode");
+    Array.from(document.getElementsByClassName("required")).forEach(requirement => {
+      requirement.classList.toggle("dark-mode");
     });
     
-    document.getElementsByClassName("pop-up")[0].classList.toggle("dark");
+    document.getElementsByClassName("personalization")[0].classList.toggle("dark");
     document.getElementsByClassName("finalise-order")[0].classList.toggle("dark");
   
     document.getElementsByClassName("added-to-cart")[0].classList.toggle("dark");
@@ -25,7 +25,7 @@ function changeMode () {
 }
 
 
-function copyContact (element) {
+function copyContact(element) {
   let text = element.innerText;
 
   text = text.substring(text.indexOf(": ") +2);
@@ -35,9 +35,9 @@ function copyContact (element) {
 
 
 addEventListener('load', () => {
-  const setting = localStorage.getItem("theme");
-  let preference = setting;
-  if (! setting) {
+  const theme = localStorage.getItem("theme");
+  let preference = theme;
+  if (! theme) {
     preference = window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? "dark" : "light";
   }
 
@@ -49,6 +49,11 @@ addEventListener('load', () => {
   };
   
   
+  AfterLoad();
+});
+
+
+function AfterLoad() {
   document.body.style.visibility = "visible";
   
   document.body.style.transition = "0.4s";
@@ -63,7 +68,7 @@ addEventListener('load', () => {
   
     Array.from(links).forEach(link => link.tabIndex = 0);
   } 
-});
+}
 
 
 function openTab() {
