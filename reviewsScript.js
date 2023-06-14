@@ -22,7 +22,7 @@ addEventListener("load", () => {
   let reviews = JSON.parse(localStorage.getItem("reviews"));
 
   if (reviews === null) {
-    reviews = [["Jan Kowalski", "Dumplings were nice"], ["Elizabeth", "Indeed it was quite as mouthwatering as restaurant name suggests. My prefered dish is Meat with vegetables but I also quite enjoyed cheese dumplings. Overall 10/10 😊"], ["terk", "terk      terkk"], ["John", "abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  abc abcd ae  ."], ["a enjoyer", "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"]];
+    reviews = [["Jan Kowalski", "Dumplings were nice"], ["Elizabeth", "Indeed it was quite as mouthwatering as restaurant name suggests. My prefered dish is Meat with vegetables but I also quite enjoyed cheese dumplings. Overall 10/10 😊"], ["terk", "terk      terkk"], ["John", "abc abcd ae  ".repeat(40) + '.'], ["a enjoyer", 'a'.repeat(256)]];
     localStorage.setItem("reviews", JSON.stringify(reviews));
   }
 
@@ -37,37 +37,23 @@ addEventListener("load", () => {
 
 
 function submitReview() {
-  const text = document.querySelector(".textarea-container textarea");
-  const name = document.getElementsByClassName("input-name")[0];
+  const textElement = document.querySelector(".textarea-container textarea");
+  const nameElement = document.getElementsByClassName("input-name")[0];
 
-  if (name.value.trim() != '') {
+  if (nameElement.value.trim() != '') {
     let reviews = JSON.parse(localStorage.getItem("reviews"));
-    reviews.push([name.value.trim(), text.value.trim()]);
+    reviews.push([nameElement.value.trim(), textElement.value.trim()]);
     localStorage.setItem("reviews", JSON.stringify(reviews));
 
     const submitButton = document.getElementsByClassName("submit-button")[0];
     finaliseReview(submitButton);
     submitButton.classList.remove("active");
 
-    text.value = "";
+    textElement.value = "";
   }else {
 
-    name.value = "";
+    nameElement.value = "";
     window.alert("Invalid name");
-  }
-}
-
-
-function showMore(element) {
-  const restOfReview = element.parentElement.getElementsByClassName("more")[0];
-  
-  if (restOfReview.style.display === "initial") {
-    restOfReview.style.display = "none";
-    element.getElementsByTagName("em")[0].innerText = "... show more";
-  } else {
-    
-    restOfReview.style.display = "initial";
-    element.getElementsByTagName("em")[0].innerText = "show less";
   }
 }
 
@@ -87,11 +73,24 @@ function finaliseReview(button) {
     confirmation.style.opacity = 0;
     setTimeout(() => confirmation.style.display = "none", 400);
   }
-  
 }
 
 
-function activateButton(text){
+function moreText(element) {
+  const restOfReview = element.parentElement.getElementsByClassName("more")[0];
+  
+  if (restOfReview.style.display === "initial") {
+    restOfReview.style.display = "none";
+    element.getElementsByTagName("em")[0].innerText = "... show more";
+  } else {
+    
+    restOfReview.style.display = "initial";
+    element.getElementsByTagName("em")[0].innerText = "show less";
+  }
+}
+
+
+function buttonActivity(text) {
   const submitButton = document.getElementsByClassName("submit-button")[0];
   if (text.trim() === ''){
     submitButton.disabled = true;
