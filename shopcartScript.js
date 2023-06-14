@@ -88,7 +88,7 @@ function verifyCode (element) {
 
 
       const promos = document.getElementsByClassName("promo");
-      promos.forEach( promo => {
+      Array.from(promos).forEach( promo => {
         promo.innerText += codeArray[1];
       })
 
