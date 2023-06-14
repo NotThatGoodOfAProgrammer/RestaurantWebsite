@@ -2,11 +2,11 @@ let summary = 0;
 
 
 function loadDishes(importedData) {
-  const names = document.getElementsByClassName("food-name");
-  const choices = document.getElementsByClassName("inputed-info");
   const images = document.querySelectorAll(".img-container img");
   const quantities = document.getElementsByClassName("ordered-quantity");
+  const names = document.getElementsByClassName("food-name");
   const prices = document.getElementsByClassName("price");
+  const choices = document.getElementsByClassName("inputed-info");
   const instructions = document.getElementsByClassName("inputed-text")
 
   for (i = 0; i<importedData.length; i++) {
@@ -28,7 +28,7 @@ function loadDishes(importedData) {
 
     for (j=0; j<4; j++) {
       choices[4*i + j].innerText = item[4+j];
-    };
+    }
     instructions[i].innerText = item[8];
   }
 }
@@ -73,6 +73,34 @@ addEventListener('load', () => {
 })
 
 
+function verifyCode (element) {
+  const inputElement = element.closest(".discounts").querySelector("input[type=text]");
+  const inputedText = inputElement.value.toLowerCase();
+  const codes = JSON.parse(localStorage.getItem("codes"));
+  
+  codes.forEach( codeArray => {
+    if (codeArray[0] === inputedText) {
+      const inputs = document.querySelectorAll(".promo input[type=text]");
+      inputs.forEach(input => input.style.display = "none");
+
+      const buttons = document.querySelectorAll(".discounts button");
+      buttons.forEach(button => button.style.display = "none");
+
+
+      const promos = document.getElementsByClassName("promo");
+      promos.forEach( promo => {
+        promo.innerText += codeArray[1];
+      })
+
+
+      updateDisplayedPrice();
+    }
+  });
+
+  inputElement.value = "";
+}
+
+
 function showInfo(element) {
     element.parentElement.nextElementSibling.children[0].classList.toggle("shown");
 }
@@ -107,11 +135,10 @@ function orderedQty (value, element) {
 
 
   const priceElement = element.closest(".money-summary").getElementsByClassName("price")[0];
-  let price = parseFloat(priceElement.innerText.slice(1));
+  let itemPrice = parseFloat(priceElement.innerText.slice(1));
 
-  summary += value*price;
-  price = priceIncludingCode(summary);
-  document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(price, 0)).toFixed(2);
+  summary += value*itemPrice;
+  updateDisplayedPrice();
 }
 
 
@@ -135,7 +162,7 @@ function trashItem(element) {
   const quantity = Number(quantityElement.innerText.slice(0, -1));
 
   summary -= price * quantity;
-  document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(priceIncludingCode(summary), 0)).toFixed(2);
+  updateDisplayedPrice();
 
   element.closest("li").remove();
 
@@ -145,44 +172,18 @@ function trashItem(element) {
 }
 
 
-function priceIncludingCode(price) {
+function updateDisplayedPrice() {
   const promo = document.getElementsByClassName("promo")[0].innerText;
-  const numberedPrice = promo.slice(promo.indexOf("-"), -1);
+  const codeValue = promo.slice(promo.indexOf("-"), -1);
+  let price = summary;
 
   if (promo.slice(-1) === "%"){
-    price *= (100 + parseFloat(numberedPrice))/100;
+    price *= (100 + parseFloat(codeValue))/100;
   } else if (promo.slice(-1) === "$") {
-    price += parseFloat(numberedPrice);
+    price += parseFloat(codeValue);
   }
 
-  return price;
-}
-
-
-function verifyCode (element) {
-  const inputElement = element.closest(".discounts").querySelector("input[type=text]");
-  const inputedText = inputElement.value.toLowerCase();
-  const codes = JSON.parse(localStorage.getItem("codes"));
-  
-  codes.forEach( codeArray => {
-    if (codeArray[0] === inputedText) {
-      const inputs = document.querySelectorAll(".promo input[type=text");
-      inputs.forEach(input => input.style.display = "none");
-
-      const buttons = document.querySelectorAll(".discounts button");
-      buttons.forEach(button => button.style.display = "none");
-
-
-      const promo = document.getElementsByClassName("promo");
-      promo[0].innerText += codeArray[1];
-      promo[1].innerText += codeArray[1];
-
-
-
-      document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(priceIncludingCode(summary), 0)).toFixed(2);
-    }
-  });
-  inputElement.value = "";
+  document.getElementsByClassName("summed-price")[0].innerText = "$" + (Math.max(price, 0)).toFixed(2);
 }
 
 
