@@ -12,7 +12,7 @@
               opacity 0.3s 0.25s ease-out;
 }
 
-.site-content img.is-visible {
+.site-content img.visible {
   opacity: 1;
   transform: scale(1, 1);
 }
