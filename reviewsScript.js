@@ -49,6 +49,7 @@ function submitReview() {
     finaliseReview(submitButton);
     submitButton.classList.remove("active");
 
+    submitButton.disabled = true;
     textElement.value = "";
   }else {
 
