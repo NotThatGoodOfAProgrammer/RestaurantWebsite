@@ -145,7 +145,7 @@ html {
 }
 
 /* poped up presentation */
-.presentation {
+.personalization-screen {
   top: 0;
   position: fixed;
   height: 100vh;
@@ -159,11 +159,11 @@ html {
   z-index: 3;
 }
 
-.poped-food-name, .multibox-name, .item-price-container, .summary {
+.picked-food-name, .multibox-name, .item-price-container, .summary {
   cursor: default;
 }
 
-.pop-up {
+.personalization {
   width: 400px;
   max-height: calc(100% - 64px);
   margin: 32px;
@@ -197,7 +197,7 @@ html {
   width: 100%;
 }
 
-.poped-food-name {
+.picked-food-name {
   display: block;
   padding: 20px;
   font-size: 1.5rem;
@@ -224,7 +224,7 @@ html {
   margin: 20px 0;
 }
 
-.summary, .quantity-container, .poped-price-container {
+.summary, .quantity-container, .personalized-price-container {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -248,7 +248,7 @@ html {
   margin-right: 0;
 }
 
-.poped-price-container{
+.personalized-price-container{
   flex-grow: 1;
   justify-content: end;
 }
@@ -258,7 +258,7 @@ html {
   height: 24px;
 }
 
-.add-to-cart {
+.add-to-cart-button {
   cursor: default;
   flex-basis: 100%;
   padding: 6px 16px;
