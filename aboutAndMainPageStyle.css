@@ -1,0 +1,41 @@
+.site-content span {
+  display: block;
+}
+
+.site-content img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.8, 0.8);
+  transition: transform 3s 0.25s cubic-bezier(0, 1, 0.3 ,1),
+              opacity 0.3s 0.25s ease-out;
+}
+
+.site-content img.visible {
+  opacity: 1;
+  transform: scale(1, 1);
+}
+
+#chefs img {
+  max-width: 750px;
+  padding-bottom: 20px;
+}
+
+#map {
+  display: flex;
+  flex-direction: column;
+}
+
+iframe {
+  margin: 0 20px 20px 20px;
+  max-width: 800px;
+  aspect-ratio: 3 / 2;
+  border-radius: 20px;
+}
+
+@media (min-width: 920px) {
+  iframe {
+    width: 800px;
+  }
+}
