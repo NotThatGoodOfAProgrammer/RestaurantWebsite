@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="description" content="Computer Science student's project. Implementation of image loading animation with JS.">
+    <title>Mouthwatering Meals</title>
+    <link rel="icon" type="image/x-icon" href="/Mouthwatering-meals/public/images/webLogo.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="restaurantStyle.css">
+    <link rel="stylesheet" href="menuStyle.css">
+    <script src="aboutAndMainPageScript.js"></script>
+    <script src="restaurantScript.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">
+        <img alt="logo" src="/Mouthwatering-meals/public/images/logo.webp">
+      </a>
+      <div id="navbar-container">
+        <button class="tab" onclick="openTab()">
+          <img alt="tab icon" id="menu" src="/Mouthwatering-meals/public/images/tabIcon.webp">
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content">
+      <ul>
+        <li>
+          <a href="about-us.html" tabindex="-1">About us</a>
+        </li>
+        <li>
+          <a href="reviews.html" tabindex="-1">Reviews</a>
+        </li>
+        <li>
+          <a href="menu.html" tabindex="-1">Menu</a>
+        </li>
+        <li>
+          <a href="order-online.html" tabindex="-1">Order online</a>
+        </li>
+        <li>
+          <a href="shopcart.html" tabindex="-1">Shopcart</a>
+        </li>
+      </ul>
+      <div class="switch-container">
+        <label class="dark-mode-switch">
+          <input type="checkbox" onchange="changeMode()">
+          <span class="dark-mode-slider"></span>
+        </label>
+      </div>
+      <address class="tab-contact">
+        <p ><a href="https://github.com/karmatys8" target="_blank" tabindex="-1">Site author: Armatys Konrad</a></p>
+        <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+      </address>
+    </div>
+    <div class="site-content">
+      <section id="animation-section">
+        <a href="https://github.com/karmatys8">While enjoying this animation you can download the menu</a>
+        <div id="animation-frame">
+          <div class="cup-body"></div>
+          <div class="cup-handle"></div>
+          <div class="teapot"></div>
+          <div class="steam" id="steam1"> </div>
+          <div class="steam" id="steam2"> </div>
+          <div class="steam" id="steam3"> </div>
+          <div class="steam" id="steam4"> </div>
+          <div class="glass"></div>
+          <div class="straw">
+            <div class="straw-top"></div>
+            <div class="straw-bottom"></div>
+          </div>
+          <div class="arrow">
+            <div class="arrow-top"></div
+            ><div class="arrow-bottom"></div>
+          </div>
+        </div>
+      </section>
+      <section id="contact">
+        <address>
+          <p><a href="https://github.com/karmatys8" target="_blank">Site author: Armatys Konrad</a></p>
+          <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+          <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+        </address>
+      </section>
+    </div>
+  </body>
+</html>
