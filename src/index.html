@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width"/>
+    <meta name="description" content="Computer Science student's project. Main page from which I started. Each next one is better:)">
+    <title>Mouthwatering Meals</title>
+    <link rel="icon" type="image/x-icon" href="/Mouthwatering-meals/public/images/webLogo.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="restaurantStyle.css">
+    <link rel="stylesheet" href="aboutAndMainPageStyle.css">
+    <script src="aboutAndMainPageScript.js"></script>
+    <script src="restaurantScript.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html">
+        <img alt="logo" src="/Mouthwatering-meals/public/images/logo.webp">
+      </a>
+      <div id="navbar-container">
+        <button class="tab" onclick="openTab()">
+          <img alt="tab icon" id="menu" src="/Mouthwatering-meals/public/images/tabIcon.webp">
+        </button>
+      </div>
+    </nav>
+    <div class="tab-content">
+      <ul>
+        <li>
+          <a href="about-us.html" tabindex="-1">About us</a>
+        </li>
+        <li>
+          <a href="reviews.html" tabindex="-1">Reviews</a>
+        </li>
+        <li>
+          <a href="menu.html" tabindex="-1">Menu</a>
+        </li>
+        <li>
+          <a href="order-online.html" tabindex="-1">Order online</a>
+        </li>
+        <li>
+          <a href="shopcart.html" tabindex="-1">Shopcart</a>
+        </li>
+      </ul>
+      <div class="switch-container">
+        <label class="dark-mode-switch">
+          <input type="checkbox" onchange="changeMode()">
+          <span class="dark-mode-slider"></span>
+        </label>
+      </div>
+      <address class="tab-contact">
+        <p ><a href="https://github.com/karmatys8" target="_blank" tabindex="-1">Site author: Armatys Konrad</a></p>
+        <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+        <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+      </address>
+    </div>
+    <div class="site-content">
+      <section id="open-hours">
+        <span>We are open 9:00-23:00 every working day.</span>
+      </section>
+      <img alt="sale banner" class="show-on-scroll" src="/Mouthwatering-meals/public/images/saleBanner.webp">
+      <section id="promotions">
+        <span>Now sandwiches 40% off for students!!!</span>
+        <span>Every Saturday with all spicy meals comes a 250ml drink of choice.</span>
+        <span>Introducing our new dish: The Steak!</span>
+      </section>
+      <img alt="friends eating out" class="show-on-scroll" src="/Mouthwatering-meals/public/images/friendsEatingOut.webp">
+      <section id="news">
+        <span>Parties of all sizes are welcomed as walk- ins to our tropical oasis. We offer reservations for groups of six guests or more, placed at least a day in advance.</span>
+      </section>
+      <img alt="serving food" class="show-on-scroll" src="/Mouthwatering-meals/public/images/servingFood.webp">
+      <section id="map">
+        <span>Visit us at our location:</span>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1076.762198424127!2d19.906304463633614!3d50.06781381311996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b8229a94d6b%3A0xd69d936ad4e89846!2sKapitol%20-%20Student%20Dormitory%20(DS)%2014!5e0!3m2!1sen!2spl!4v1675678012908!5m2!1sen!2spl" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </section>
+      <section id="contact">
+        <address>
+          <p><a href="https://github.com/karmatys8" target="_blank">Site author: Armatys Konrad</a></p>
+          <p class="email-info" onclick="copyContact(this)">E-mail: MouthwateringMeals@gmail.com</p>
+          <p class="phone-info" onclick="copyContact(this)">Phone: +48 123 456 789</p>
+        </address>
+      </section>
+    </div>
+  </body>
+</html>
