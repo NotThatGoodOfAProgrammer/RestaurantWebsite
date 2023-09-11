@@ -1,6 +1,10 @@
-# Restaurant Website with only HTML, CSS and JS
+# Mouthwatering-meals
 
-## Link: https://notthatgoodofaprogrammer.github.io/RestaurantWebsite/
+### [View website](https://notthatgoodofaprogrammer.github.io/Mouthwatering-meals)
+
+### HTML, CSS and JS only
+
+### Hosted on GitHub Pages
 
 ## Description:
 I wanted to get better grasp of Front-End basics before moving on to frameworks, SASS and Typescript, hence I started this project.
